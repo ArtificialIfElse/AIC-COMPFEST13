@@ -1,91 +1,18 @@
 from flask import Flask, request, jsonify, render_template
-import pickle
-import pandas as pd
+# import pandas as pd
+from graduation import *
+import numpy as np
+import os
 
 flask_app = Flask(__name__)
-# model_personality = pickle.load(open("personality.pkl", "rb"))
-model_kelulusan = pickle.load(open("graduation_s1_six.pkl", "rb"))
+flask_app.register_blueprint(graduation)
 
 @flask_app.route("/")
 def index():
     data = {
-        "title": "Pra Kuliah"
+        "title": "Pra Prediksi Kelulusan"
     }
     return render_template("home.html", data=data)
-
-# personality page
-@flask_app.route("/personality")
-def personality_index():
-    data = {
-        "title": "Prediksi Personality"
-    }
-    return render_template("personality/index.html", data=data)
-
-@flask_app.route("/personality/test")
-def personality_check():
-    data = {
-        "title": "Test Personality"
-    }
-    return render_template("personality/test.html", data=data)
-
-# graduation page
-@flask_app.route("/graduation")
-def graduation_index():
-    data = {
-        "title": "Prediksi Kelulusan"
-    }
-    return render_template("graduation/index.html", data=data)
-
-@flask_app.route("/graduation/bachelor")
-def graduation_index():
-    data = {
-        "title": "Prediksi Kelulusan"
-    }
-    return render_template("graduation/index.html", data=data)
-
-@flask_app.route("/graduation/bachelor/fifth")
-def graduation_bachelor_five_semesters():
-    data = {
-        "title": "Prediksi 5 Semester"
-    }
-    return render_template("graduation/five-semesters.html", data=data)
-
-@flask_app.route("/graduation/bachelor/sixth")
-def graduation_bachelor_six_semesters():
-    data = {
-        "title": "Prediksi 6 Semester"
-    }
-    return render_template("graduation/six-semesters.html", data=data)
-
-@flask_app.route("/graduation/bachelor/seventh")
-def graduation_bachelor_seven_semesters():
-    data = {
-        "title": "Prediksi 7 Semester"
-    }
-    return render_template("graduation/seven-semesters.html", data=data)
-
-
-
-# semester six
-@flask_app.route("/graduation/bachelor/predict")
-def graduation_bachelor_predict():
-    value = [[3.0, 3.5, 4.0, 3.0, 2.5, 2.0]]
-    # df = pd.DataFrame(value)
-    prediction = model_kelulusan.predict(value)
-    # print(prediction[0])
-
-    predictionMap = {}
-    predictionMap[2] = "Sangat Memuaskan"
-    predictionMap[1] = "Memuaskan"
-    predictionMap[0] = "Cumlaude"
-    predictionMap[-1] = "Tidak Lulus"
-
-    data = {
-        "title": "Prediksi 5 Semester",
-        "prediction": predictionMap[prediction[0]]
-    }
-
-    return render_template("graduation/predict.html", data=data)
 
 # paper page
 @flask_app.route("/paper")
@@ -110,7 +37,8 @@ def paper_predict():
     return render_template("paper/predict.html", data=data)
 
 if __name__ == "__main__":
-    flask_app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    flask_app.run(host='0.0.0.0', port=port, debug=True)
 
 
 
