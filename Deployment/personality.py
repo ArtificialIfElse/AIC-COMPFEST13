@@ -92,14 +92,20 @@ def get_personality_mbti():
     result = extract_personality_model(request.get_json()['answer'])
 
     data = {
-        "data": result,
+        "mbti": result['mbti'],
+        "advice": result['advice'],
+        "recommendation_major": result['recommendation_major'],
+        "agreeableness": result['graph_plot']['agreeableness'],
+        "extroversion": result['graph_plot']['extroversion'],
+        "conscientiousness": result['graph_plot']['conscientiousness'],
+        "neuroticism": result['graph_plot']['neuroticism'],
+        "openness": result['graph_plot']['openness'],
         "status": True,
         "response_code": 200,
         "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
     }
 
     return jsonify(data)
-
 
 def get_list_pertanyaan():
     questions = [
