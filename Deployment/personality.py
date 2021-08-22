@@ -16,11 +16,11 @@ def index_personality():
 
 @personality.route("/personality/question")
 def questions_personality():
+    questions = get_list_pertanyaan()
     data = {
         "title": "Pertanyaan untukmu",
-        "questions": get_list_pertanyaan(),
-        "length_questions": len(get_list_pertanyaan()),
-        "count": 1
+        "questions": questions,
+        "length_questions": len(questions)
     }
 
     return render_template("personality/questions.html", data=data)
@@ -34,16 +34,15 @@ def get_question():
         each_question = {}
         each_question["nama_soal"] = "soal" + str(iterate)
         each_question["soal"] = item
+        each_question["value_slider"] = 0
         list_questions.append(each_question)
         iterate += 1
 
     data = {
-       "data": list_questions,
+        "data": list_questions,
         "status": True,
-        "meta": {
-            "response_code": 200,
-            "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
-        }, 
+        "response_code": 200,
+        "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
     }
 
     return jsonify(data)
@@ -70,30 +69,24 @@ def get_personality_mbti():
         if request.get_json() is None or request.get_json()['answer'] is None:
             data = {
                 "status": False,
-                "meta": {
-                    "response_code": 400,
-                    "message": "Need correct request"
-                }
+                "response_code": 400,
+                "message": "Need correct request"
             }
 
             return jsonify(data)
         if len(request.get_json()['answer']) > 50 or len(request.get_json()['answer']) < 50:
             data = {
                 "status": False,
-                "meta": {
-                    "response_code": 400,
-                    "message": "Bad Request"
-                }
+                "response_code": 400,
+                "message": "Bad Request"
             }
 
             return jsonify(data)
     except KeyError:
         data = {
                 "status": False,
-                "meta": {
-                    "response_code": 400,
-                    "message": "Need correct request"
-                }
+                "response_code": 400,
+                "message": "Need correct request"
             }
         return jsonify(data)
     result = extract_personality_model(request.get_json()['answer'])
@@ -101,10 +94,8 @@ def get_personality_mbti():
     data = {
         "data": result,
         "status": True,
-        "meta": {
-            "response_code": 200,
-            "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
-        },
+        "response_code": 200,
+        "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
     }
 
     return jsonify(data)

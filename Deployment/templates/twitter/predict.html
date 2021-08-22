@@ -1,8 +1,10 @@
 {% include 'layouts/header.html' %}
-      <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+      <section class="h-100 w-100 bg-white text-center" style="box-sizing: border-box">
           <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
             <div class="row text-center">
-              <h1>Yeay Tema Paper Kamu adalah {{ data["prediction"] }}</h1>
+                <h1>{{ data["prediction"] }}</h1>
             </div>
+            
+        <a class="btn btn-primary w-50" href="{{ url_for('twitter.twitter_index') }}">Cek Lagi</a>
       </section>
 {% include 'layouts/footer.html' %}

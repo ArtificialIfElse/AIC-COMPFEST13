@@ -1,0 +1,16 @@
+{% include 'layouts/header.html' %}
+      <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+          <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+            <div class="row">
+              <h1>{{ prediction }}</h1>
+            </div>
+              <form action="{{ url_for('twitter.twitter_predict') }}" method="post">
+                  
+                <div class="form-group text-center">
+                    <input name="username" type="text" class="w-50" placeholder="Masukkan Username Twitter" required>
+                    <button type="submit" class="btn btn-primary">Prediksi Personality</button>
+                </div>
+              </form>
+          </div>
+      </section>
+{% include 'layouts/footer.html' %}

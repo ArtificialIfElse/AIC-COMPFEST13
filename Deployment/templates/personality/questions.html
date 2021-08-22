@@ -99,6 +99,22 @@
         background-color: #21bf73
     }
 
+    .pagination-page-info {
+        padding: .6em;
+        padding-left: 0;
+        width: 40em;
+        margin: .5em;
+        margin-left: 0;
+        font-size: 12px;
+    }
+    .pagination-page-info b {
+        color: black;
+        background: #6aa6ed;
+        padding-left: 2px;
+        padding: .1em .25em;
+        font-size: 150%;
+    }
+
     @media(max-width:576px) {
         .question {
             width: 100%;
@@ -106,42 +122,115 @@
         }
     }
 </style>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
     <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
         <div class="container mt-sm-5 my-1">
             <form action="{{ url_for('personality.predict_personality') }}" method="POST">
-                {%for i in range(data["length_questions"])%}
-                        <div class="question ml-sm-5 pl-sm-5 pt-2">
-                            <div class="py-2 h5">
-                                <b>{{ i + 1 }}. {{ data["questions"][i] }}</b>
-                            </div>
-                            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                                <label class="options">Tidak Setuju 
-                                    <input type="radio" name="question{{ i + 1 }}" value="-2"> 
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="options">Kurang Setuju
-                                    <input type="radio" name="question{{ i + 1 }}" value="1"> 
-                                    <span class="checkmark"></span> 
-                                </label> <label class="options">Netral 
-                                    <input type="radio" name="question{{ i + 1 }}" value="0"> 
-                                    <span class="checkmark"></span> 
-                                </label> 
-                                <label class="options">Setuju 
-                                    <input type="radio" name="question{{ i + 1 }}" value="1"> 
-                                    <span class="checkmark"></span> 
-                                </label> 
-                                <label class="options">Sangat Setuju 
-                                    <input type="radio" name="question{{ i + 1 }}" value="2"> 
-                                    <span class="checkmark"></span> 
-                                </label>
+                <div class="divs">
+                    {% for i in range(data["length_questions"]) %}
+                        <div class="note">
+                            <div class="question ml-sm-5 pl-sm-5 pt-2 mb-5">
+                                <div class="py-2 h5">
+                                    <b>{{ i + 1 }}. {{ data["questions"][i] }}</b>
+                                </div>
+                                <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 each" id="options">
+                                    <label class="options">Tidak Setuju 
+                                        <input type="radio" name="question{{ i + 1 }}" value="-2" required> 
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="options">Kurang Setuju
+                                        <input type="radio" name="question{{ i + 1 }}" value="1"> 
+                                        <span class="checkmark"></span> 
+                                    </label> <label class="options">Netral 
+                                        <input type="radio" name="question{{ i + 1 }}" value="0"> 
+                                        <span class="checkmark"></span> 
+                                    </label> 
+                                    <label class="options">Setuju 
+                                        <input type="radio" name="question{{ i + 1 }}" value="1"> 
+                                        <span class="checkmark"></span> 
+                                    </label> 
+                                    <label class="options">Sangat Setuju 
+                                        <input type="radio" name="question{{ i + 1 }}" value="2" checked> 
+                                        <span class="checkmark"></span> 
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                {%endfor%}
-                <div class="row p-2">
-                    <input type="submit" value="Prediksi">
+                    {% endfor %}
+                    </div>
+                    <a id="prev" class="btn btn-warning">Sebelumnya</a>
+                    <a id="next" class="btn btn-warning">Selanjutnya</a>
+                    <div class="row p-2" id="submitButton">
+                        <input type="submit" value="Prediksi" class="btn btn-success">
+                    </div>
                 </div>
             </form>
+            <script>
+                var counter = 1;
+                $(document).ready(function(){
+                    $('#submitButton').hide();
+                    $(".divs .note").each(function(e) {
+                        if (e != 0)
+                            $(this).hide();
+                    });
+                    
+                    $("#next").click(function(){
+                        counter += 1;
+                        if ($(".divs .note:visible").next().length != 0)
+                            $(".divs .note:visible").next().show().prev().hide();
+                        else {
+                            $(".divs .note:visible").hide();
+                            $(".divs .note:first").show();
+                        }
+
+                        if (counter == 51) {
+                            counter = 1;
+                        }
+
+                        if (counter == 50) {
+                            showButton();
+                        } else {
+                            hideButton();
+                        }
+
+                        console.log(counter);
+                        return false;
+                    });
+
+                    $("#prev").click(function(){
+                        counter -= 1;
+                        if ($(".divs .note:visible").prev().length != 0)
+                            $(".divs .note:visible").prev().show().next().hide();
+                        else {
+                            $(".divs .note:visible").hide();
+                            $(".divs .note:last").show();
+                        }
+                        if (counter == 0) {
+                            counter = 50;
+                        }
+
+                        if (counter == 50) {
+                            showButton();
+                        } else {
+                            hideButton();
+                        }
+                        console.log(counter);
+                        return false;
+                    });
+
+                    function hideButton() {
+                        $('#submitButton').hide();
+                    }
+
+                    function showButton() {
+                        $('#submitButton').show();
+                    }
+                });
+            </script>
         </div>
     </div>
 </section>

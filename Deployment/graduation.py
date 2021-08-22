@@ -59,26 +59,26 @@ def graduation_diploma_index():
     }
     return render_template("graduation/diploma/index.html", data=data)
 
-@graduation.route("/graduation/bachelor/third")
+@graduation.route("/graduation/diploma/third")
 def graduation_diploma_three_semesters():
     data = {
         "title": "Prediksi 3 Semester Diploma"
     }
     return render_template("graduation/diploma/three-semesters.html", data=data)
 
-@graduation.route("/graduation/bachelor/fourth")
+@graduation.route("/graduation/diploma/fourth")
 def graduation_diploma_four_semesters():
     data = {
         "title": "Prediksi 4 Semester Diploma"
     }
-    return render_template("graduation/bachelor/four-semesters.html", data=data)
+    return render_template("graduation/diploma/four-semesters.html", data=data)
 
-@graduation.route("/graduation/bachelor/fifth")
+@graduation.route("/graduation/diploma/fifth")
 def graduation_diploma_five_semesters():
     data = {
         "title": "Prediksi 5 Semester"
     }
-    return render_template("graduation/bachelor/five-semesters.html", data=data)
+    return render_template("graduation/diploma/five-semesters.html", data=data)
 
 
 # predict
@@ -138,20 +138,16 @@ def graduation_bachelor_predict_api():
         if request.get_json() is None or request.get_json()['nilai'] is None:
             data = {
                 "status": False,
-                "meta": {
-                    "response_code": 400,
-                    "message": "Need correct request"
-                }
+                "response_code": 400,
+                "message": "Need correct request"
             }
 
             return jsonify(data)
     except KeyError:
         data = {
                 "status": False,
-                "meta": {
-                    "response_code": 400,
-                    "message": "Need correct request"
-                }
+                "response_code": 400,
+                "message": "Need correct request"
             }
 
         return jsonify(data)
@@ -162,10 +158,8 @@ def graduation_bachelor_predict_api():
     if length_semester < 5 or length_semester > 7:
         data = {
             "status": False,
-            "meta": {
-                "response_code": 400,
-                "message": "Doesn't meet the criteria length semester min 5 and max 7"
-            }
+            "response_code": 400,
+            "message": "Doesn't meet the criteria length semester min 5 and max 7"
         }
 
         return jsonify(data)
@@ -185,14 +179,10 @@ def graduation_bachelor_predict_api():
     predictionMap[-2] = "Error"
 
     data = {
-        "data": {
-            "prediction": predictionMap[prediction[0]]
-        },
+        "prediction": predictionMap[prediction[0]],
         "status": True,
-        "meta": {
-            "response_code": 200,
-            "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
-        },
+        "response_code": 200,
+        "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
     }
 
     return jsonify(data)
@@ -247,20 +237,16 @@ def graduation_diploma_predict_api():
         if request.get_json() is None or request.get_json()['nilai'] is None:
             data = {
                 "status": False,
-                "meta": {
-                    "response_code": 400,
-                    "message": "Need correct request"
-                }
+                "response_code": 400,
+                "message": "Need correct request"
             }
 
             return jsonify(data)
     except KeyError:
         data = {
                 "status": False,
-                "meta": {
-                    "response_code": 400,
-                    "message": "Need correct request"
-                }
+                "response_code": 400,
+                "message": "Need correct request"
             }
 
         return jsonify(data)
@@ -271,10 +257,8 @@ def graduation_diploma_predict_api():
     if length_semester < 3 or length_semester > 5:
         data = {
             "status": False,
-            "meta": {
-                "response_code": 400,
-                "message": "Doesn't meet the criteria length semester min 3 and max 5"
-            }
+            "response_code": 400,
+            "message": "Doesn't meet the criteria length semester min 3 and max 5"
         }
 
         return jsonify(data)
@@ -294,14 +278,10 @@ def graduation_diploma_predict_api():
     predictionMap[-2] = "Error"
 
     data = {
-        "data": {
-            "prediction": predictionMap[prediction[0]]
-        },
+        "prediction": predictionMap[prediction[0]],
         "status": True,
-        "meta": {
-            "response_code": 200,
-            "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
-        },
+        "response_code": 200,
+        "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
     }
 
     return jsonify(data)
