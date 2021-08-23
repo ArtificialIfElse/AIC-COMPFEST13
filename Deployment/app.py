@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template
 from graduation import *
 from personality import *
 from twitter import *
-# from paper import *
+from paper import *
 import numpy as np
 import os
 
@@ -11,7 +11,7 @@ flask_app = Flask(__name__)
 flask_app.register_blueprint(graduation)
 flask_app.register_blueprint(personality)
 flask_app.register_blueprint(twitter)
-# flask_app.register_blueprint(paper)
+flask_app.register_blueprint(paper)
 
 @flask_app.route("/")
 def index():

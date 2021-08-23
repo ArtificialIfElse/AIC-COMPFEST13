@@ -2,7 +2,6 @@ from flask import Flask, json, request, jsonify, render_template
 from personality_logic import *
 
 from flask import Blueprint, render_template, jsonify, request
-import pickle
 
 personality = Blueprint('personality',__name__)
 
