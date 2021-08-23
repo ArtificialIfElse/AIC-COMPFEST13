@@ -8,7 +8,8 @@ personality = Blueprint('personality',__name__)
 @personality.route("/personality")
 def index_personality():
     data = {
-        "title": "Cari tahu tentang kamu"
+        "title": "Cari tahu tentang kamu",
+        "selected": "personality"
     }
 
     return render_template("personality/index.html", data=data)
@@ -19,6 +20,7 @@ def questions_personality():
     data = {
         "title": "Pertanyaan untukmu",
         "questions": questions,
+        "selected": "personality",
         "length_questions": len(questions)
     }
 
@@ -58,6 +60,7 @@ def predict_personality():
     result = extract_personality_model(answer)
     data = {
         "title": "Prediksi Personality",
+        "selected": "personality",
         "result": result
     }
     return render_template("personality/predict.html", data=data)

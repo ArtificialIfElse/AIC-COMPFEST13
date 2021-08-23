@@ -1,0 +1,28 @@
+{% include 'layouts/header.html' %}
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Besley:ital,wght@1,500&display=swap");
+    .quotes {
+      font-family: "Besley", serif;
+      margin-top: -40px;
+      color: #187151;
+      font-size: 3.25vh;
+      margin-left: 10px;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
+  <section class="h-100 w-100 bg-white text-center" style="box-sizing: border-box">
+    <div class="container">
+      <div class="center">
+        <img
+          src="{{ url_for('static', filename='logo.png') }}"
+          alt=""
+          class="about__img"
+          style="width: 450px; height: 450px"
+        />
+        <br />
+        <p class="quotes">“When Possibilities Meet Technology”</p>
+      </div>
+    </div>
+  </section>
+{% include 'layouts/footer.html' %}

@@ -1,0 +1,12 @@
+{% include 'layouts/header.html' %}
+      <section class="h-100 w-100 bg-white text-center" style="box-sizing: border-box">
+          <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+            <div class="row text-center">
+                <h3>Hasil Prediksi</h3>
+                <hr>
+                <h1>{{ data["prediction"] }}</h1>
+            </div>
+            
+        <a class="btn w-50" style="color:white; background-color: #27c499;" href="{{ url_for('paper.paper_index') }}">Cek Lagi</a>
+      </section>
+{% include 'layouts/footer.html' %}

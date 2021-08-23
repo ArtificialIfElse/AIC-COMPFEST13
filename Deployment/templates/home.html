@@ -24,7 +24,7 @@
                 </pattern>
                 <image id="image0" width="24" height="24" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAAiElEQVRIie2UQQqAIBBFX90hqfvWBWvRVXJVGwcsNLTGhdSHAUV5T1QGvpIJsMDuygKjpsCHS22aAoHG5tG0mqf4BfUIOmDm/CVj8fesQJ8qDklC3/QRPCRZgeFmLRt+J1GDSwywOOByGZu3cMn1TVROHpMUgUsMitdSRxpvnNTfc9nFe1H9OQDMPjgyCnuv6wAAAABJRU5ErkJggg=="/>
                 </defs>
-                </svg>
+              </svg>
               Download Apps
             </div>
           </button>
@@ -33,15 +33,9 @@
       <!-- Right Column -->
       <div class="right-column text-center d-flex justify-content-center pe-0">
         <img id="img-fluid" class="h-auto mw-100"
-          src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-1.png"
+          src="{{ url_for('static', filename='container.png') }}"
           alt="" />
       </div>
-    </div>
-    <!-- Right Column -->
-    <div class="right-column text-center d-flex justify-content-center pe-0">
-      <img id="img-fluid" class="h-auto mw-100"
-        src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-1.png"
-        alt="" />
     </div>
   </div>
 </div>
@@ -61,7 +55,7 @@
         <div class="row">
         <div class="col-lg-4 column">
             <div class="icon">
-            <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-5.png"
+            <img src="{{ url_for('static', filename='icon1.png') }}"
                 alt="" />
             </div>
             <h3 class="icon-title">
@@ -75,7 +69,7 @@
         </div>
         <div class="col-lg-4 column">
             <div class="icon">
-            <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-6.png"
+            <img src="{{ url_for('static', filename='icon2.png') }}"
                 alt="" />
             </div>
             <h3 class="icon-title">
@@ -91,7 +85,7 @@
         </div>
         <div class="col-lg-4 column">
             <div class="icon">
-            <img src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-7.png"
+            <img src="{{ url_for('static', filename='icon3.png') }}"
                 alt="" />
             </div>
             <h3 class="icon-title">
@@ -111,7 +105,7 @@
         <div class="d-flex flex-lg-row flex-column align-items-center">
             <div class="me-lg-3">
             <img
-                src="http://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content2/Content-2-1%20(1).png"
+                src="{{ url_for('static', filename='icon4.png') }}"
                 alt="" />
             </div>
             <div class="flex-grow-1 text-lg-start text-center card-text">

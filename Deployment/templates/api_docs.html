@@ -1,0 +1,64 @@
+{% include 'layouts/header.html' %}
+<style>
+    @media (min-width: 900px) {
+        .container {
+        background-color: #27c499;
+        color: #fff;
+        border-radius: 10px;
+        padding: 20px -1px;
+        font-family: "Montserrat", sans-serif;
+        max-width: 80vh;
+        }
+    }
+
+    @media (min-width: 800px) {
+        .container {
+        background-color: #27c499;
+        color: #fff;
+        border-radius: 10px;
+        padding: 20px -1px;
+        font-family: "Montserrat", sans-serif;
+        max-width: 75vh;
+        }
+        .question {
+        /* width: 100%; */
+        word-spacing: 2px;
+        /* margin-left: 21%; */
+        }
+        .ppp {
+        width: 110%;
+        }
+        .submisi {
+        width: 50%;
+        }
+    }
+
+    @media (min-width: 600px) {
+        .container {
+        max-width: 100vh;
+        }
+        .ppp {
+        width: 108%;
+        }
+        .question {
+        width: 100%;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .ppp {
+        width: 108%;
+        }
+    }
+</style>
+
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+    <div class="container">
+        <div class="col">
+            <div class="row">
+                <iframe style="height: 2000px;" src="https://docs.google.com/document/d/e/2PACX-1vRucW9Og7OEpCJxR9qRDwLW7lds1MjuyOoKBUDlq62-eMAZbucPkEQNWyZSuHh948Pj231cu5ShoolT/pub?embedded=true"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'layouts/footer.html' %}

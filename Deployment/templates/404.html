@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Page</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #EEF6F;
+      }
+
+      .v-center {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .boxs {
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid;
+        color: white;
+        background-color: #27c499;
+        border-radius: 5vh;
+        width: 50%;
+        margin-left: 25%;
+      }
+  </style>
+  <body>
+    <div class="v-center">
+      <div class="container">
+        <div class="text-center" id="not-found">
+          <h1>☹</h1>
+          <h2>Ooppss! Halaman Tidak Ditemukan</h2>
+          <p>Mohon maaf halaman yang anda cari tidak ditemukan</p>
+          <div class="boxs">
+            <a href="{{ url_for('index') }}" style="color: #fff">Kembali ke Halaman Awal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

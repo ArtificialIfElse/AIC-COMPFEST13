@@ -17,7 +17,8 @@ model_graduation_diploma_fifth  = pickle.load(open("model/graduation/diploma/Sem
 @graduation.route("/graduation")
 def graduation_index():
     data = {
-        "title": "Prediksi Kelulusan"
+        "title": "Prediksi Kelulusan",
+        "selected": "graduation"
     }
     return render_template("graduation/index.html", data=data)
 
@@ -25,28 +26,32 @@ def graduation_index():
 @graduation.route("/graduation/bachelor")
 def graduation_bachelor_index():
     data = {
-        "title": "Prediksi Kelulusan Bachelor"
+        "title": "Prediksi Kelulusan Bachelor",
+        "selected": "graduation"
     }
     return render_template("graduation/bachelor/index.html", data=data)
 
 @graduation.route("/graduation/bachelor/fifth")
 def graduation_bachelor_five_semesters():
     data = {
-        "title": "Prediksi 5 Semester"
+        "title": "Prediksi 5 Semester",
+        "selected": "graduation"
     }
     return render_template("graduation/bachelor/five-semesters.html", data=data)
 
 @graduation.route("/graduation/bachelor/sixth")
 def graduation_bachelor_six_semesters():
     data = {
-        "title": "Prediksi 6 Semester"
+        "title": "Prediksi 6 Semester",
+        "selected": "graduation"
     }
     return render_template("graduation/bachelor/six-semesters.html", data=data)
 
 @graduation.route("/graduation/bachelor/seventh")
 def graduation_bachelor_seven_semesters():
     data = {
-        "title": "Prediksi 7 Semester"
+        "title": "Prediksi 7 Semester",
+        "selected": "graduation"
     }
     return render_template("graduation/bachelor/seven-semesters.html", data=data)
 
@@ -55,28 +60,32 @@ def graduation_bachelor_seven_semesters():
 @graduation.route("/graduation/diploma")
 def graduation_diploma_index():
     data = {
-        "title": "Prediksi Kelulusan Diploma"
+        "title": "Prediksi Kelulusan Diploma",
+        "selected": "graduation"
     }
     return render_template("graduation/diploma/index.html", data=data)
 
 @graduation.route("/graduation/diploma/third")
 def graduation_diploma_three_semesters():
     data = {
-        "title": "Prediksi 3 Semester Diploma"
+        "title": "Prediksi 3 Semester Diploma",
+        "selected": "graduation"
     }
     return render_template("graduation/diploma/three-semesters.html", data=data)
 
 @graduation.route("/graduation/diploma/fourth")
 def graduation_diploma_four_semesters():
     data = {
-        "title": "Prediksi 4 Semester Diploma"
+        "title": "Prediksi 4 Semester Diploma",
+        "selected": "graduation"
     }
     return render_template("graduation/diploma/four-semesters.html", data=data)
 
 @graduation.route("/graduation/diploma/fifth")
 def graduation_diploma_five_semesters():
     data = {
-        "title": "Prediksi 5 Semester"
+        "title": "Prediksi 5 Semester",
+        "selected": "graduation"
     }
     return render_template("graduation/diploma/five-semesters.html", data=data)
 
@@ -127,65 +136,11 @@ def graduation_bachelor_predict():
 
     data = {
         "title": "Prediksi Sarjana",
+        "selected": "graduation",
         "prediction": predictionMap[prediction[0]]
     }
 
     return render_template("graduation/bachelor/predict.html", data=data)
-
-@graduation.route("/api/v1/graduation/bachelor/predict", methods=['POST'])
-def graduation_bachelor_predict_api():
-    try:
-        if request.get_json() is None or request.get_json()['nilai'] is None:
-            data = {
-                "status": False,
-                "response_code": 400,
-                "message": "Need correct request"
-            }
-
-            return jsonify(data)
-    except KeyError:
-        data = {
-                "status": False,
-                "response_code": 400,
-                "message": "Need correct request"
-            }
-
-        return jsonify(data)
-
-    length_semester = len(request.get_json()['nilai'])
-    value = [request.get_json()['nilai']]
-
-    if length_semester < 5 or length_semester > 7:
-        data = {
-            "status": False,
-            "response_code": 400,
-            "message": "Doesn't meet the criteria length semester min 5 and max 7"
-        }
-
-        return jsonify(data)
-
-    if length_semester == 5:
-        prediction = model_graduation_bachelor_fifth.predict(value)
-    elif length_semester == 6:
-        prediction = model_graduation_bachelor_sixth.predict(value)
-    elif length_semester == 7:
-        prediction = model_graduation_bachelor_seventh.predict(value)
-    
-    predictionMap = {}
-    predictionMap[2] = "Sangat Memuaskan"
-    predictionMap[1] = "Memuaskan"
-    predictionMap[0] = "Cumlaude"
-    predictionMap[-1] = "Tidak Lulus"
-    predictionMap[-2] = "Error"
-
-    data = {
-        "prediction": predictionMap[prediction[0]],
-        "status": True,
-        "response_code": 200,
-        "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
-    }
-
-    return jsonify(data)
 
 @graduation.route("/graduation/diploma/predict", methods=['POST'])
 def graduation_diploma_predict():
@@ -226,6 +181,7 @@ def graduation_diploma_predict():
 
     data = {
         "title": "Prediksi Sarjana",
+        "selected": "graduation",
         "prediction": predictionMap[prediction[0]]
     }
 
@@ -282,6 +238,188 @@ def graduation_diploma_predict_api():
         "status": True,
         "response_code": 200,
         "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
+    }
+
+    return jsonify(data)
+
+@graduation.route("/api/v1/graduation/bachelor/predict", methods=['POST'])
+def graduation_bachelor_predict_api():
+    try:
+        if request.get_json() is None or request.get_json()['nilai'] is None:
+            data = {
+                "status": False,
+                "response_code": 400,
+                "message": "Need correct request"
+            }
+
+            return jsonify(data)
+    except KeyError:
+        data = {
+                "status": False,
+                "response_code": 400,
+                "message": "Need correct request"
+            }
+
+        return jsonify(data)
+
+    length_semester = len(request.get_json()['nilai'])
+    value = [request.get_json()['nilai']]
+
+    if length_semester < 5 or length_semester > 7:
+        data = {
+            "status": False,
+            "response_code": 400,
+            "message": "Doesn't meet the criteria length semester min 5 and max 7"
+        }
+
+        return jsonify(data)
+
+    if length_semester == 5:
+        prediction = model_graduation_bachelor_fifth.predict(value)
+    elif length_semester == 6:
+        prediction = model_graduation_bachelor_sixth.predict(value)
+    elif length_semester == 7:
+        prediction = model_graduation_bachelor_seventh.predict(value)
+    
+    predictionMap = {}
+    predictionMap[2] = "Sangat Memuaskan"
+    predictionMap[1] = "Memuaskan"
+    predictionMap[0] = "Cumlaude"
+    predictionMap[-1] = "Tidak Lulus"
+    predictionMap[-2] = "Error"
+
+    data = {
+        "prediction": predictionMap[prediction[0]],
+        "status": True,
+        "response_code": 200,
+        "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
+    }
+
+    return jsonify(data)
+
+# v2
+@graduation.route("/api/v2/graduation/diploma/predict", methods=['POST'])
+def graduation_diploma_predict_api_v2():
+    try:
+        if request.get_json() is None or request.get_json()['nilai'] is None:
+            data = {
+                "status": False,
+                "meta": {
+                    "response_code": 400,
+                    "message": "Bad Request"
+                }
+            }
+
+            return jsonify(data)
+    except KeyError:
+        data = {
+                "status": False,
+                "meta": {
+                    "response_code": 400,
+                    "message": "Bad Request"
+                }
+            }
+
+        return jsonify(data)
+
+    length_semester = len(request.get_json()['nilai'])
+    value = [request.get_json()['nilai']]
+
+    if length_semester < 3 or length_semester > 5:
+        data = {
+            "status": False,
+            "meta": {
+                "response_code": 400,
+                "message": "Doesn't meet the criteria length semester min 3 and max 5"
+            }
+        }
+
+        return jsonify(data)
+
+    if length_semester == 3:
+        prediction = model_graduation_diploma_third.predict(value)
+    elif length_semester == 4:
+        prediction = model_graduation_diploma_fourth.predict(value)
+    elif length_semester == 5:
+        prediction = model_graduation_diploma_fifth.predict(value)
+    
+    predictionMap = {}
+    predictionMap[2] = "Sangat Memuaskan"
+    predictionMap[1] = "Memuaskan"
+    predictionMap[0] = "Cumlaude"
+    predictionMap[-1] = "Tidak Lulus"
+    predictionMap[-2] = "Error"
+
+    data = {
+        "prediction": predictionMap[prediction[0]],
+        "status": True,
+        "meta": {
+            "response_code": 200,
+            "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
+        }
+    }
+
+    return jsonify(data)
+
+@graduation.route("/api/v2/graduation/bachelor/predict", methods=['POST'])
+def graduation_bachelor_predict_api_v2():
+    try:
+        if request.get_json() is None or request.get_json()['nilai'] is None:
+            data = {
+                "status": False,
+                "meta": {
+                    "response_code": 400,
+                    "message": "Bad Request"
+                }
+            }
+
+            return jsonify(data)
+    except KeyError:
+        data = {
+                "status": False,
+                "meta": {
+                    "response_code": 400,
+                    "message": "Bad Request"
+                }
+            }
+
+        return jsonify(data)
+
+    length_semester = len(request.get_json()['nilai'])
+    value = [request.get_json()['nilai']]
+
+    if length_semester < 5 or length_semester > 7:
+        data = {
+            "status": False,
+            "meta": {
+                "response_code": 400,
+                "message": "Doesn't meet the criteria length semester min 5 and max 7"
+            }
+        }
+
+        return jsonify(data)
+
+    if length_semester == 5:
+        prediction = model_graduation_bachelor_fifth.predict(value)
+    elif length_semester == 6:
+        prediction = model_graduation_bachelor_sixth.predict(value)
+    elif length_semester == 7:
+        prediction = model_graduation_bachelor_seventh.predict(value)
+    
+    predictionMap = {}
+    predictionMap[2] = "Sangat Memuaskan"
+    predictionMap[1] = "Memuaskan"
+    predictionMap[0] = "Cumlaude"
+    predictionMap[-1] = "Tidak Lulus"
+    predictionMap[-2] = "Error"
+
+    data = {
+        "prediction": predictionMap[prediction[0]],
+        "status": True,
+        "meta": {
+            "response_code": 200,
+            "message": "The request has succeeded. An entity corresponding to the requested resource is sent in the response."
+        }
     }
 
     return jsonify(data)

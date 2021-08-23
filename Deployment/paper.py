@@ -11,14 +11,16 @@ paper = Blueprint('paper',__name__)
 @paper.route("/paper")
 def paper_index():
     data = {
-        "title": "Prediksi Tema Paper"
+        "title": "Prediksi Tema Paper",
+        "selected": "paper"
     }
     return render_template("paper/index.html", data=data)
 
 @paper.route("/paper/request-predict")
 def request_predict():
     data = {
-        "title": "Masukkan Hasil Paper Kamu"
+        "title": "Masukkan Hasil Paper Kamu",
+        "selected": "paper"
     }
 
     return render_template("paper/request-paper.html", data=data)
@@ -35,6 +37,7 @@ def predict_paper():
 
     data = {
         "title": "Prediksi Tema Paper",
+        "selected": "paper",
         "prediction": result
     }
 

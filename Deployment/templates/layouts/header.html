@@ -3,6 +3,7 @@
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}"/>
       <title>{{ data["title"] }}</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     </head>
@@ -371,9 +372,9 @@
     </style>
     <div class="container-xxl mx-auto p-0  position-relative header-2-2" style="font-family: 'Poppins', sans-serif">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <a href="#">
+        <a href="{{ url_for('index') }}">
           <img style="margin-right: 0.75rem"
-            src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-5.png" alt="" />
+            src="{{ url_for('static', filename='favicon.png') }}" alt="" />
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="modal" data-bs-target="#targetModal-item">
           <span class="navbar-toggler-icon"></span>
@@ -386,7 +387,7 @@
               <div class="modal-header border-0" style="padding: 2rem; padding-bottom: 0">
                 <a class="modal-title" id="targetModalLabel">
                   <img style="margin-top: 0.5rem"
-                    src="http://api.elements.buildwithangga.com/storage/files/2/assets/Header/Header2/Header-2-5.png"
+                    src="{{ url_for('static', filename='favicon.png') }}"
                     alt="" />
                 </a>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -400,10 +401,13 @@
                     <a class="nav-link" href="{{ url_for('graduation.graduation_index') }}">Prediksi Kelulusan</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('personality.index_personality') }}">Prediksi Jurusan dan Personalitymu</a>
+                    <a class="nav-link" href="{{ url_for('personality.index_personality') }}">Tes Kepribadian</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('paper.paper_index') }}">Tema Paper?</a>
+                    <a class="nav-link" href="{{ url_for('paper.paper_index') }}">Tema Paper</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('api_docs') }}">API Docs</a>
                   </li>
                 </ul>
               </div>
@@ -413,17 +417,20 @@
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo">
           <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
+            <li class="nav-item {% if (data['selected'] == 'index') %} active {% endif %}">
               <a class="nav-link" href="{{ url_for('index') }}">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {% if (data['selected'] == 'graduation') %} active {% endif %}">
               <a class="nav-link" href="{{ url_for('graduation.graduation_index') }}">Prediksi Kelulusan</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('personality.index_personality') }}">Prediksi Jurusan dan Personalitymu</a>
+            <li class="nav-item {% if (data['selected'] == 'personality') %} active {% endif %}">
+              <a class="nav-link" href="{{ url_for('personality.index_personality') }}">Tes Kepribadian</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('paper.paper_index') }}">Tema Paper?</a>
+            <li class="nav-item {% if (data['selected'] == 'paper') %} active {% endif %}">
+              <a class="nav-link" href="{{ url_for('paper.paper_index') }}">Tema Paper</a>
+            </li>
+            <li class="nav-item {% if (data['selected'] == 'api_docs') %} active {% endif %}">
+              <a class="nav-link" href="{{ url_for('api_docs') }}">API Docs</a>
             </li>
           </ul>
         </div>
