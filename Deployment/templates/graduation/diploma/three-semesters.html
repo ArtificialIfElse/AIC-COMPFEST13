@@ -1,30 +1,67 @@
 {% include 'layouts/header.html' %}
-      <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
-          <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
-            <div class="row">
-              <h1>{{ prediction }}</h1>
-            </div>
-              <form action="{{ url_for('graduation.graduation_diploma_predict') }}" method="post">
-                  <div class="row my-3">
-                      <div class="form-group col-md-6">
-                          <label for="inputEmail4">Nilai Semester 1</label>
-                          <input name="semester_1" type="number" step="any" min="0" max="4" class="form-control" placeholder="Masukkan Nilai" required>
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label >Nilai Semester 2</label>
-                          <input name="semester_2" type="number" step="any" min="0" max="4" class="form-control" placeholder="Masukkan Nilai" required>
-                      </div>
-                  </div>
-      
-                  <div class="row my-3">
-                      <div class="form-group col-md-6">
-                          <label for="inputEmail4">Nilai Semester 3</label>
-                          <input name="semester_3" type="number" step="any" min="0" max="4" class="form-control" placeholder="Masukkan Nilai" required>
-                      </div>
-                  </div>
-                  <input type="text" name="jumlah_semester" value="3" hidden>
-                  <button type="submit" class="btn btn-primary">Prediksi</button>
-              </form>
-          </div>
-      </section>
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+  <div
+    class="content-2-2 container-xxl mx-auto p-0 position-relative"
+    style="font-family: 'Poppins', sans-serif"
+  >
+    <h1>
+      Prediksi Predikat Kelulusan Dengan <br />
+      Data 3 Semester
+    </h1>
+    <div class="row">
+      <h1>{{ prediction }}</h1>
+    </div>
+    <form
+      action="{{ url_for('graduation.graduation_diploma_predict') }}"
+      method="post"
+    >
+      <div class="row my-3">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Nilai Semester 1</label>
+          <input
+            name="semester_1"
+            type="number"
+            step="any"
+            min="0"
+            max="4"
+            class="form-control"
+            placeholder="Masukkan Nilai"
+            required
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label>Nilai Semester 2</label>
+          <input
+            name="semester_2"
+            type="number"
+            step="any"
+            min="0"
+            max="4"
+            class="form-control"
+            placeholder="Masukkan Nilai"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Nilai Semester 3</label>
+          <input
+            name="semester_3"
+            type="number"
+            step="any"
+            min="0"
+            max="4"
+            class="form-control"
+            placeholder="Masukkan Nilai"
+            required
+          />
+        </div>
+      </div>
+      <input type="text" name="jumlah_semester" value="3" hidden />
+      <button type="submit" class="btn btn-primary">Prediksi</button>
+    </form>
+  </div>
+</section>
 {% include 'layouts/footer.html' %}

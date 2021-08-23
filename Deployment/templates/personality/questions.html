@@ -1,237 +1,271 @@
 {% include 'layouts/header.html' %}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box
-    }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    body {
-        background-color: #333
-    }
+  body {
+    background-color: #333;
+  }
 
+  .container {
+    background-color: #27c499;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px -1px;
+    font-family: "Montserrat", sans-serif;
+    /* max-width: 60vh; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* text-align: -webkit-center; */
+    text-align: center;
+  }
+
+  .container > p {
+    font-size: 32px;
+  }
+
+  .question {
+    border-top: 5px solid;
+    /* border-bottom: 5px solid; */
+    margin-bottom: 2vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .options {
+    position: relative;
+    padding-left: 40px;
+    top: 8px;
+  }
+
+  #options label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .options input {
+    opacity: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #e8b8b8;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+  }
+
+  .options input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .options .checkmark:after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    display: block;
+    background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 300ms ease-in-out 0s;
+  }
+
+  .options input[type="radio"]:checked ~ .checkmark {
+    background: #555;
+    transition: 300ms ease-in-out 0s;
+  }
+
+  .options input[type="radio"]:checked ~ .checkmark:after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .btn-primary {
+    background-color: #555;
+    color: #ddd;
+    border: 1px solid #ddd;
+  }
+
+  .btn-primary:hover {
+    background-color: #21bf73;
+    border: 1px solid #21bf73;
+  }
+
+  .btn-success {
+    padding: 5px 25px;
+    background-color: #21bf73;
+  }
+
+  .baru {
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    color: black;
+    width: 50%;
+    margin-left: 7vh;
+  }
+
+  .quest {
+    width: 70%;
+  }
+
+  .submisi {
+    width: 50%;
+    margin: 2%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    background-color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 0 10px 0;
+  }
+
+  .submisi:hover {
+    background-color: #a8eeb7;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .ppp {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+
+  @media (min-width: 900px) {
     .container {
-        background-color: gray;
-        color: #ddd;
-        border-radius: 10px;
-        padding: 20px;
-        font-family: 'Montserrat', sans-serif;
-        max-width: 700px
+      background-color: #27c499;
+      color: #fff;
+      border-radius: 10px;
+      padding: 20px -1px;
+      font-family: "Montserrat", sans-serif;
+      max-width: 80vh;
     }
+  }
 
-    .container>p {
-        font-size: 32px
+  @media (min-width: 800px) {
+    .container {
+      background-color: #27c499;
+      color: #fff;
+      border-radius: 10px;
+      padding: 20px -1px;
+      font-family: "Montserrat", sans-serif;
+      max-width: 75vh;
     }
-
     .question {
-        width: 75%
+      /* width: 100%; */
+      word-spacing: 2px;
+      /* margin-left: 21%; */
     }
+    .ppp {
+      width: 110%;
+    }
+    .submisi {
+      width: 50%;
+    }
+  }
 
-    .options {
-        position: relative;
-        padding-left: 40px
+  @media (min-width: 600px) {
+    .container {
+      max-width: 100vh;
     }
+    .ppp {
+      width: 108%;
+    }
+    .question {
+      width: 100%;
+    }
+  }
 
-    #options label {
-        display: block;
-        margin-bottom: 15px;
-        font-size: 14px;
-        cursor: pointer
+  @media (max-width: 550px) {
+    .ppp {
+      width: 108%;
     }
-
-    .options input {
-        opacity: 0
-    }
-
-    .checkmark {
-        position: absolute;
-        top: -1px;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #555;
-        border: 1px solid #ddd;
-        border-radius: 50%
-    }
-
-    .options input:checked~.checkmark:after {
-        display: block
-    }
-
-    .options .checkmark:after {
-        content: "";
-        width: 10px;
-        height: 10px;
-        display: block;
-        background: white;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        border-radius: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        transition: 300ms ease-in-out 0s
-    }
-
-    .options input[type="radio"]:checked~.checkmark {
-        background: #21bf73;
-        transition: 300ms ease-in-out 0s
-    }
-
-    .options input[type="radio"]:checked~.checkmark:after {
-        transform: translate(-50%, -50%) scale(1)
-    }
-
-    .btn-primary {
-        background-color: #555;
-        color: #ddd;
-        border: 1px solid #ddd
-    }
-
-    .btn-primary:hover {
-        background-color: #21bf73;
-        border: 1px solid #21bf73
-    }
-
-    .btn-success {
-        padding: 5px 25px;
-        background-color: #21bf73
-    }
-
-    .pagination-page-info {
-        padding: .6em;
-        padding-left: 0;
-        width: 40em;
-        margin: .5em;
-        margin-left: 0;
-        font-size: 12px;
-    }
-    .pagination-page-info b {
-        color: black;
-        background: #6aa6ed;
-        padding-left: 2px;
-        padding: .1em .25em;
-        font-size: 150%;
-    }
-
-    @media(max-width:576px) {
-        .question {
-            width: 100%;
-            word-spacing: 2px
-        }
-    }
+  }
 </style>
-<script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
 <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
-    <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
-        <div class="container mt-sm-5 my-1">
-            <form action="{{ url_for('personality.predict_personality') }}" method="POST">
-                <div class="divs">
-                    {% for i in range(data["length_questions"]) %}
-                        <div class="note">
-                            <div class="question ml-sm-5 pl-sm-5 pt-2 mb-5">
-                                <div class="py-2 h5">
-                                    <b>{{ i + 1 }}. {{ data["questions"][i] }}</b>
-                                </div>
-                                <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 each" id="options">
-                                    <label class="options">Tidak Setuju 
-                                        <input type="radio" name="question{{ i + 1 }}" value="-2" required> 
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="options">Kurang Setuju
-                                        <input type="radio" name="question{{ i + 1 }}" value="1"> 
-                                        <span class="checkmark"></span> 
-                                    </label> <label class="options">Netral 
-                                        <input type="radio" name="question{{ i + 1 }}" value="0" checked> 
-                                        <span class="checkmark"></span> 
-                                    </label> 
-                                    <label class="options">Setuju 
-                                        <input type="radio" name="question{{ i + 1 }}" value="1"> 
-                                        <span class="checkmark"></span> 
-                                    </label> 
-                                    <label class="options">Sangat Setuju 
-                                        <input type="radio" name="question{{ i + 1 }}" value="2"> 
-                                        <span class="checkmark"></span> 
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                    </div>
-                    <a id="prev" class="btn btn-warning">Sebelumnya</a>
-                    <a id="next" class="btn btn-warning">Selanjutnya</a>
-                    <div class="row p-2" id="submitButton">
-                        <input type="submit" value="Prediksi" class="btn btn-success">
-                    </div>
-                </div>
-            </form>
-            <script>
-                var counter = 1;
-                $(document).ready(function(){
-                    $('#submitButton').hide();
-                    $(".divs .note").each(function(e) {
-                        if (e != 0)
-                            $(this).hide();
-                    });
-                    
-                    $("#next").click(function(){
-                        counter += 1;
-                        if ($(".divs .note:visible").next().length != 0)
-                            $(".divs .note:visible").next().show().prev().hide();
-                        else {
-                            $(".divs .note:visible").hide();
-                            $(".divs .note:first").show();
-                        }
-
-                        if (counter == 51) {
-                            counter = 1;
-                        }
-
-                        if (counter == 50) {
-                            showButton();
-                        } else {
-                            hideButton();
-                        }
-
-                        console.log(counter);
-                        return false;
-                    });
-
-                    $("#prev").click(function(){
-                        counter -= 1;
-                        if ($(".divs .note:visible").prev().length != 0)
-                            $(".divs .note:visible").prev().show().next().hide();
-                        else {
-                            $(".divs .note:visible").hide();
-                            $(".divs .note:last").show();
-                        }
-                        if (counter == 0) {
-                            counter = 50;
-                        }
-
-                        if (counter == 50) {
-                            showButton();
-                        } else {
-                            hideButton();
-                        }
-                        console.log(counter);
-                        return false;
-                    });
-
-                    function hideButton() {
-                        $('#submitButton').hide();
-                    }
-
-                    function showButton() {
-                        $('#submitButton').show();
-                    }
-                });
-            </script>
+  <div
+    class="content-2-2 container-xxl mx-auto p-0 position-relative"
+    style="font-family: 'Poppins', sans-serif"
+  >
+    <div class="container mt-sm-5 my-1">
+      <form
+        action="{{ url_for('personality.predict_personality') }}"
+        method="POST"
+        style="min-width: 100vh; margin: 20px 0 20px 0"
+      >
+        {%for i in range(data["length_questions"])%}
+        <div class="question ml-sm-5 pl-sm-5 pt-2">
+          <div class="py-2 h5 quest">
+            <b>{{ i + 1 }}. {{ data["questions"][i] }}</b>
+          </div>
+          <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 baru" id="options">
+            <label class="options"
+              >Tidak Setuju
+              <input
+                type="radio"
+                name="question{{ i + 1 }}"
+                value="-2"
+                required="required"
+                oninvalid="this.setCustomValidity('Terdapat bagian yang belum terpilih')"
+                oninput="this.setCustomValidity('')"
+              />
+              <span class="checkmark"></span>
+            </label>
+            <label class="options"
+              >Kurang Setuju
+              <input type="radio" name="question{{ i + 1 }}" value="1" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="options"
+              >Netral
+              <input type="radio" name="question{{ i + 1 }}" value="0" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="options"
+              >Setuju
+              <input type="radio" name="question{{ i + 1 }}" value="1" />
+              <span class="checkmark"></span>
+            </label>
+            <label class="options"
+              >Sangat Setuju
+              <input type="radio" name="question{{ i + 1 }}" value="2" />
+              <span class="checkmark"></span>
+            </label>
+          </div>
         </div>
+        {%endfor%}
+        <div class="row p-2 ppp">
+          <input type="submit" value="Prediksi" class="submisi" />
+        </div>
+      </form>
     </div>
+  </div>
+  <script>
+    // required = () => {
+    //   let empty = document.forms["form1"].value;
+    //   return empty == ""
+    //     ? alert("Mohon untuk diisi semua")
+    //     : console.log("Processing");
+    // };
+  </script>
 </section>
 {% include 'layouts/footer.html' %}
