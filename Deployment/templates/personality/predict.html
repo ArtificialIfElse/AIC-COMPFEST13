@@ -1,78 +1,136 @@
 {% include 'layouts/header.html' %}
-  <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
-      <div class="col">
-        <div class="row">
-          <h1>Kamu adalah seorang {{ data['result']['mbti'] }}</h1>
-        </div>
-        <hr>
-        <div class="row">
-          <p>{{ data['result']['advice'][0] }}</p>
-          <p>{{ data['result']['advice'][1] }}</p>
-        </div>
-        <div class="row">
-          <p>{{ data['result']['recommendation_major'] }}</p>
-        </div>
-        <div style="width: 500px; height: 500px; display: block; margin: 0 auto;">
-          <canvas id="myChart"></canvas>
-        </div>
+<!-- <style>
 
-        <input id="agreeableness" value="{{ data['result']['graph_plot']['agreeableness'] }}" type="text" hidden>
-        <input id="extroversion" value="{{ data['result']['graph_plot']['extroversion'] }}" type="text" hidden>
-        <input id="conscientiousness" value="{{ data['result']['graph_plot']['conscientiousness'] }}" type="text" hidden>
-        <input id="neuroticism" value="{{ data['result']['graph_plot']['neuroticism'] }}" type="text" hidden>
-        <input id="openness" value="{{ data['result']['graph_plot']['openness'] }}" type="text" hidden>
+</style> -->
 
-        <!-- <div class="row mt-5">
-          <div class="col-sm-6">
-            <h3>Ingin mencoba lewat username twitter?</h3>
-          </div>
-          <div class="col-sm-6">
-            <a class="btn btn-primary" href="{{ url_for('twitter.twitter_index') }}">Klik Disini</a>
-          </div>
-        </div>
-      </div> -->
-  </section>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
-  <script>
-    const agreeableness     = document.getElementById('agreeableness').value;
-    const extroversion      = document.getElementById('extroversion').value;
-    const conscientiousness = document.getElementById('conscientiousness').value;
-    const neuroticism       = document.getElementById('neuroticism').value;
-    const openness          = document.getElementById('openness').value;
-    
-    const labels = ['agreeableness', 'extroversion', 'conscientiousness', 'neuroticism', 'openness']
-    const data = {
-      labels: labels,
-      datasets: [
-        {
-          label: 'nilai MBTI kamu',
-          data: [agreeableness, extroversion, conscientiousness, neuroticism, openness],
-          borderColor: ['#4fc9f6', '#4ac9f6', '#4dc7f6', '#4dfff6', '#ffff'],
-        }
-      ]
-    }; 
-    const config = {
-      type: 'radar',
-      data: data,
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Hasil Persebaraan nilai MBTI'
+<section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+  <div class="col" style="margin: 0 4vh 0 4vh">
+    <div class="row">
+      <h1>Kamu adalah seorang {{ data['result']['mbti'] }}</h1>
+    </div>
+    <hr />
+    <div style="width: 500px; height: 500px; display: block; margin: 0 auto">
+      <canvas id="myChart"></canvas>
+    </div>
+    <div
+      class="row"
+      style="
+        line-height: 1.25;
+        font-size: 18px;
+        border: 1px solid;
+        padding: 15px;
+      "
+    >
+      <ol>
+        <li>{{ data['result']['advice'][0] }}</li>
+        <br />
+        <li>{{ data['result']['advice'][1] }}</li>
+        <br />
+        <li>{{ data['result']['advice'][2] }}</li>
+        <br />
+        <li>{{ data['result']['advice'][3] }}</li>
+        <br />
+        <li>{{ data['result']['advice'][4] }}</li>
+      </ol>
+    </div>
+    <br />
+    <div class="row">
+      <p style="font-weight: bold; text-align: center; font-size: 2vh">
+        {{ data['result']['recommendation_major'] }}
+      </p>
+    </div>
+
+    <input
+      id="agreeableness"
+      value="{{ data['result']['graph_plot']['agreeableness'] }}"
+      type="text"
+      hidden
+    />
+    <input
+      id="extroversion"
+      value="{{ data['result']['graph_plot']['extroversion'] }}"
+      type="text"
+      hidden
+    />
+    <input
+      id="conscientiousness"
+      value="{{ data['result']['graph_plot']['conscientiousness'] }}"
+      type="text"
+      hidden
+    />
+    <input
+      id="neuroticism"
+      value="{{ data['result']['graph_plot']['neuroticism'] }}"
+      type="text"
+      hidden
+    />
+    <input
+      id="openness"
+      value="{{ data['result']['graph_plot']['openness'] }}"
+      type="text"
+      hidden
+    />
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+<script>
+  const agreeableness = document.getElementById("agreeableness").value;
+  const extroversion = document.getElementById("extroversion").value;
+  const conscientiousness = document.getElementById("conscientiousness").value;
+  const neuroticism = document.getElementById("neuroticism").value;
+  const openness = document.getElementById("openness").value;
+
+  const labels = [
+    "agreeableness",
+    "extroversion",
+    "conscientiousness",
+    "neuroticism",
+    "openness",
+  ];
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "nilai MBTI kamu",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        data: [
+          agreeableness,
+          extroversion,
+          conscientiousness,
+          neuroticism,
+          openness,
+        ],
+        borderColor: ["#4fc9f6", "#4ac9f6", "#4dc7f6", "#4dfff6", "#ffff"],
+        options: {
+          pointLabels: {
+            fontSize: 20,
           },
         },
-        scale: {
-          min: 0,
-          max: 5
-        }
       },
-    };
-    
-    var myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-  </script>
+    ],
+  };
+  const config = {
+    type: "radar",
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: "Hasil Persebaraan nilai MBTI",
+        },
+      },
+      scale: {
+        min: 0,
+        max: 5,
+        pointLabels: {
+          fontSize: 20,
+        },
+      },
+    },
+  };
+
+  var myChart = new Chart(document.getElementById("myChart"), config);
+</script>
 {% include 'layouts/footer.html' %}
