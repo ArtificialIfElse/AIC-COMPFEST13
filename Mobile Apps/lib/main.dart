@@ -1,6 +1,7 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:compest_artificialifelse/halaman/splash/introduction_animation_screen.dart';
-import 'package:compest_artificialifelse/halaman/dashboard/menu_card.dart';
 
 void main() {
   runApp(MyApp());

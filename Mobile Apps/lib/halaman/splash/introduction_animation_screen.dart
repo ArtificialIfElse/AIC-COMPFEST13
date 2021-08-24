@@ -1,7 +1,7 @@
-import 'package:compest_artificialifelse/halaman/splash/slide/care_view.dart';
+import 'package:compest_artificialifelse/halaman/splash/slide/Kelulusan_view.dart';
 import 'package:compest_artificialifelse/halaman/splash/slide/center_next_button.dart';
-import 'package:compest_artificialifelse/halaman/splash/slide/mood_diary_vew.dart';
-import 'package:compest_artificialifelse/halaman/splash/slide/relax_view.dart';
+import 'package:compest_artificialifelse/halaman/splash/slide/jurnal_vew.dart';
+import 'package:compest_artificialifelse/halaman/splash/slide/kepribadian_view.dart';
 import 'package:compest_artificialifelse/halaman/splash/slide/splash_view.dart';
 import 'package:compest_artificialifelse/halaman/splash/slide/top_back_skip_view.dart';
 import 'package:compest_artificialifelse/halaman/splash/slide/welcome_view.dart';
@@ -37,20 +37,20 @@ class _IntroductionAnimationScreenState
   Widget build(BuildContext context) {
     print(_animationController?.value);
     return Scaffold(
-      backgroundColor: Color(0xff5AC18E),
+      backgroundColor: Color(0xff27C499),
       body: ClipRect(
         child: Stack(
           children: [
             SplashView(
               animationController: _animationController!,
             ),
-            RelaxView(
+            KepribadianView(
               animationController: _animationController!,
             ),
-            CareView(
+            KelulusanView(
               animationController: _animationController!,
             ),
-            MoodDiaryVew(
+            JurnalView(
               animationController: _animationController!,
             ),
             WelcomeView(

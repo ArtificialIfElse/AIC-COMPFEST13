@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:compest_artificialifelse/api/api.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MenuPaper extends StatefulWidget {
   MenuPaper({Key? key}) : super(key: key);
@@ -10,6 +12,22 @@ class MenuPaper extends StatefulWidget {
 class _MenuPaper extends State<MenuPaper> {
   int selectedValue = 1;
 
+  TextEditingController judul = TextEditingController();
+  TextEditingController abstrak = TextEditingController();
+
+  String tema = "";
+
+  void _cekJurnal() async {
+    Api.cekJurnal(judul.text, abstrak.text, selectedValue).then((value) {
+      setState(() {
+        tema = value.theme;
+        print(tema);
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +37,9 @@ class _MenuPaper extends State<MenuPaper> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              getAppBarUI(),
               TextFormField(
+                controller: judul,
                 cursorColor: Theme.of(context).cursorColor,
                 textCapitalization: TextCapitalization.sentences,
                 maxLines: null,
@@ -40,6 +60,7 @@ class _MenuPaper extends State<MenuPaper> {
                 height: 12,
               ),
               TextFormField(
+                controller: abstrak,
                 cursorColor: Theme.of(context).cursorColor,
                 textCapitalization: TextCapitalization.sentences,
                 maxLines: null,
@@ -80,7 +101,17 @@ class _MenuPaper extends State<MenuPaper> {
                 height: 36,
               ),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (abstrak.text.length > 50 && judul.text != "") {
+                    _cekJurnal();
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "Judul dan Abstraksi yang kamu inputkan salah!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        backgroundColor: Colors.red,
+                        webShowClose: false);
+                  }
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
@@ -104,9 +135,55 @@ class _MenuPaper extends State<MenuPaper> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 36,
+              ),
+              Text(
+                'Paper yang kamu maksud bertema : $tema',
+                style: TextStyle(
+                  fontSize: 18,
+                  letterSpacing: 0.27,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 36,
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget getAppBarUI() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 18, right: 18, bottom: 18),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: 36,
+                ),
+                Text(
+                  'Klasifikasikan Papermu!',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    letterSpacing: 0.27,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,12 +1,12 @@
 import 'package:compest_artificialifelse/halaman/dashboard/menu_card.dart';
 import 'package:flutter/material.dart';
 
-class DesignCourseHomeScreen extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
-  _DesignCourseHomeScreenState createState() => _DesignCourseHomeScreenState();
+  _Dashboard createState() => _Dashboard();
 }
 
-class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
+class _Dashboard extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +36,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-            child: PopularCourseListView(),
+            child: DashboardListView(),
           ),
         ],
       ),
@@ -54,7 +54,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Hallo, selamat datang di',
+                  '           Hallo, selamat datang di',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -64,7 +64,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                   ),
                 ),
                 Text(
-                  'Dashboard',
+                  '       Dashboard',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,

@@ -1,6 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:compest_artificialifelse/halaman/dashboard/menu.dart';
+import 'package:compest_artificialifelse/navbar/nav_drawer.dart';
 
 class CenterNextButton extends StatelessWidget {
   final AnimationController animationController;
@@ -99,8 +99,7 @@ class CenterNextButton extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      DesignCourseHomeScreen(),
+                                  builder: (context) => NavigationHomeScreen(),
                                 ),
                               );
                             },

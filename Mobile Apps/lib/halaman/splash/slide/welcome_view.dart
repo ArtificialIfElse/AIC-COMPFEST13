@@ -74,7 +74,10 @@ class WelcomeView extends StatelessWidget {
                 position: _welcomeFirstHalfAnimation,
                 child: Text(
                   "Selamat datang",
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
               ),
               Padding(
@@ -83,6 +86,7 @@ class WelcomeView extends StatelessWidget {
                 child: Text(
                   "kami hadir dengan berbagai layanan untuk mengatasi kebingungan kalian",
                   textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white),
                 ),
               ),
             ],

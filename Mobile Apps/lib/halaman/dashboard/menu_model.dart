@@ -2,45 +2,33 @@ class Category {
   Category({
     this.title = '',
     this.imagePath = '',
-    this.lessonCount = 0,
-    this.money = 0,
-    this.rating = 0.0,
+    this.status = '',
   });
 
   String title;
-  int lessonCount;
-  int money;
-  double rating;
+  String status;
   String imagePath;
 
   static List<Category> popularCourseList = <Category>[
     Category(
-      imagePath: 'assets/design_course/interFace3.png',
+      imagePath: 'assets/interFace4.png',
       title: 'Tes Kepribadian',
-      lessonCount: 12,
-      money: 25,
-      rating: 4.8,
+      status: 'mau tau \nkepribadianmu?',
     ),
     Category(
-      imagePath: 'assets/design_course/interFace4.png',
-      title: 'Prediksi Kelulusan',
-      lessonCount: 28,
-      money: 208,
-      rating: 4.9,
+      imagePath: 'assets/interFace3.png',
+      title: 'Cek Kelulusan',
+      status: 'kamu lulus \nperdikat apa?',
     ),
     Category(
-      imagePath: 'assets/design_course/interFace3.png',
+      imagePath: 'assets/interFace1.png',
       title: 'Klasifikasi Paper',
-      lessonCount: 12,
-      money: 25,
-      rating: 4.8,
+      status: 'bingung sama \ntema paper?',
     ),
     Category(
-      imagePath: 'assets/design_course/interFace4.png',
+      imagePath: 'assets/interFace2.png',
       title: 'Kepribadian Dari Sosmed',
-      lessonCount: 28,
-      money: 208,
-      rating: 4.9,
+      status: 'Cooming Soon',
     ),
   ];
 }
