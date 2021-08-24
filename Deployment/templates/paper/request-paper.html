@@ -15,8 +15,9 @@
                     <div class="row my-3">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Abstract Paper</label>
-                            <textarea name="abstract" class="form-control" rows="3"></textarea>
-                          </div>
+                            <textarea onkeyup="check()" id="content_txt" name="abstract" class="form-control" rows="3"></textarea>
+                            <p id="message" style="color:red;"></p>
+                        </div>
                     </div>
                     <div class="row my-3">
                         <div class="form-group col-md-12">
@@ -27,8 +28,29 @@
                             </select>
                         </div>
                     </div>
-                    <button type="submit" class="btn" style="background-color:#27c499; color:white;">Prediksi Tema Paper</button>
+                    <button id="btnSubmit" type="submit" class="btn" style="background-color:#27c499; color:white;">Prediksi Tema Paper</button>
                 </form>
           </div>
       </section>
+      <script>
+            function check() {
+                var area = document.getElementById("content_txt");
+                var message = document.getElementById("message");
+                var btnSubmit = document.getElementById("btnSubmit");
+                var minLength = 50;
+                var checkLength = function() {
+                    if (area.value.length == 0) {
+                        message.innerHTML = "";
+                        btnSubmit.disabled = true;
+                    } else if (area.value.length < minLength) {
+                        message.innerHTML = "Tampaknya abstraksi yang kamu inputkan salah";
+                        btnSubmit.disabled = true;
+                    } else {
+                        message.innerHTML = ""
+                        btnSubmit.disabled = false;
+                    }
+                }
+                setInterval(checkLength, 300);
+            }
+      </script>
 {% include 'layouts/footer.html' %}

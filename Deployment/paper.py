@@ -29,6 +29,7 @@ def request_predict():
 def predict_paper():
     abstract = request.form['abstract']
     language = request.form['language']
+
     if language == 2:
         translator = Translator()
         result_translate = translator.translate(abstract, dest='en')
@@ -78,21 +79,3 @@ def api_predict_paper():
                 "message": "Bad Request"
             }
         return jsonify(data)
-
-@paper.route("/api/v1/test", methods=["POST"])
-def api_predict_paper_tes():
-    abstract = request.get_json()['abstract']
-    print(abstract)
-    translator = Translator()
-    result = translator.translate(abstract, dest='en')
-    # result = get_category([abstract])
-    print(result.text)
-
-    data = {
-            "status": True,
-            "response_code": 200,
-            "message": "Success Predict Paper Theme",
-            "theme": result.text
-        }
-
-    return jsonify(data)
