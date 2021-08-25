@@ -1,6 +1,6 @@
 ## Repositori ini dibuat selama perlombaan AIC pada rangkaian acara COMPFEST 13
 ---
-### Tim kami terdiri dari
+### COMPFEST 13 - AI Innovation Challenge ArtificialIfElse
 
 1. Handhika Yanuar Pratama (AI/ML Developer)
 2. Muhammad Novrizal Ghiffari (Flutter Developer)
