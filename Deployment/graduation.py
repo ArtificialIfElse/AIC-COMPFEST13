@@ -172,11 +172,13 @@ def graduation_diploma_predict():
         ]
         value = [data_form]
         prediction = model_graduation_diploma_fifth.predict(value)
+    print(value)
     predictionMap = {}
     predictionMap[2] = "Sangat Memuaskan"
     predictionMap[1] = "Memuaskan"
     predictionMap[0] = "Cumlaude"
     predictionMap[-1] = "Tidak Lulus"
+    predictionMap[3] = "Tidak Lulus"
     predictionMap[-2] = "Error"
 
     data = {
