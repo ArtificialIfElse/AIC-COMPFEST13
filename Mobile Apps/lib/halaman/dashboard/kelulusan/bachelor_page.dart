@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:compest_artificialifelse/api/api.dart';
 
 class BachelorPage extends StatefulWidget {
   @override
@@ -10,6 +11,64 @@ class _BachelorPage extends State<BachelorPage> {
   bool enableEnam = false;
   bool enableTujuh = false;
 
+  TextEditingController s1 = TextEditingController();
+  TextEditingController s2 = TextEditingController();
+  TextEditingController s3 = TextEditingController();
+  TextEditingController s4 = TextEditingController();
+  TextEditingController s5 = TextEditingController();
+  TextEditingController s6 = TextEditingController();
+  TextEditingController s7 = TextEditingController();
+
+  String hasil = "";
+
+  void _cekSarjanaLima() async {
+    Api.cekSarjanaLima(double.parse(s1.text), double.parse(s2.text),
+            double.parse(s3.text), double.parse(s4.text), double.parse(s5.text))
+        .then((value) {
+      setState(() {
+        hasil = value.prediction;
+        print(hasil);
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
+
+  void _cekSarjanaEnam() async {
+    Api.cekSarjanaEnam(
+            double.parse(s1.text),
+            double.parse(s2.text),
+            double.parse(s3.text),
+            double.parse(s4.text),
+            double.parse(s5.text),
+            double.parse(s6.text))
+        .then((value) {
+      setState(() {
+        hasil = value.prediction;
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
+
+  void _cekSarjanaTujuh() async {
+    Api.cekSarjanaTujuh(
+            double.parse(s1.text),
+            double.parse(s2.text),
+            double.parse(s3.text),
+            double.parse(s4.text),
+            double.parse(s5.text),
+            double.parse(s6.text),
+            double.parse(s7.text))
+        .then((value) {
+      setState(() {
+        hasil = value.prediction;
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +78,9 @@ class _BachelorPage extends State<BachelorPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              SizedBox(
+                height: 36,
+              ),
               Text(
                 'Kamu sudah melalui semester berapa?',
                 textAlign: TextAlign.left,
@@ -66,6 +128,7 @@ class _BachelorPage extends State<BachelorPage> {
                 height: 12,
               ),
               TextFormField(
+                controller: s1,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -81,6 +144,7 @@ class _BachelorPage extends State<BachelorPage> {
                 ),
               ),
               TextFormField(
+                controller: s2,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -96,6 +160,7 @@ class _BachelorPage extends State<BachelorPage> {
                 ),
               ),
               TextFormField(
+                controller: s3,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -111,6 +176,7 @@ class _BachelorPage extends State<BachelorPage> {
                 ),
               ),
               TextFormField(
+                controller: s4,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -126,6 +192,7 @@ class _BachelorPage extends State<BachelorPage> {
                 ),
               ),
               TextFormField(
+                controller: s5,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -142,6 +209,7 @@ class _BachelorPage extends State<BachelorPage> {
               ),
               enableEnam
                   ? TextFormField(
+                      controller: s6,
                       enabled: enableEnam,
                       cursorColor: Theme.of(context).cursorColor,
                       maxLength: 10,
@@ -160,6 +228,7 @@ class _BachelorPage extends State<BachelorPage> {
                   : SizedBox(),
               enableTujuh
                   ? TextFormField(
+                      controller: s7,
                       enabled: enableTujuh,
                       cursorColor: Theme.of(context).cursorColor,
                       maxLength: 10,
@@ -180,7 +249,15 @@ class _BachelorPage extends State<BachelorPage> {
                 height: 36,
               ),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (selectedValue == 5) {
+                    _cekSarjanaLima();
+                  } else if (selectedValue == 6) {
+                    _cekSarjanaEnam();
+                  } else if (selectedValue == 7) {
+                    _cekSarjanaTujuh();
+                  }
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
@@ -203,6 +280,21 @@ class _BachelorPage extends State<BachelorPage> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 36,
+              ),
+              Text(
+                'Selamat! Anda lulus dengan predikat $hasil',
+                style: TextStyle(
+                  fontSize: 18,
+                  letterSpacing: 0.27,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 146,
               ),
             ],
           ),

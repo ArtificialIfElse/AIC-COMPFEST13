@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.compest_artificialifelse">
     <uses-permission android:name="android.permission."/>
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="compest_artificialifelse"
+        android:label="Siswa AI"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

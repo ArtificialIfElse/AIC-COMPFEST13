@@ -16,6 +16,9 @@ class _KepribadianSosmed extends State<KepribadianSosmed> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              height: 36,
+            ),
             TextFormField(
               cursorColor: Theme.of(context).cursorColor,
               maxLength: 100,
@@ -57,6 +60,9 @@ class _KepribadianSosmed extends State<KepribadianSosmed> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 36,
             ),
           ],
         ),

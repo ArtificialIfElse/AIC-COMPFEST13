@@ -1,5 +1,4 @@
-import 'dart:html';
-
+import 'package:compest_artificialifelse/api/api.dart';
 import 'package:flutter/material.dart';
 
 class DiplomaPage extends StatefulWidget {
@@ -12,6 +11,51 @@ class _DiplomaPage extends State<DiplomaPage> {
   bool enableEmpat = false;
   bool enableLima = false;
 
+  String hasil = "";
+
+  TextEditingController s1 = TextEditingController();
+  TextEditingController s2 = TextEditingController();
+  TextEditingController s3 = TextEditingController();
+  TextEditingController s4 = TextEditingController();
+  TextEditingController s5 = TextEditingController();
+
+  void _cekDiplomaTiga() async {
+    Api.cekDiplomaTiga(
+            double.parse(s1.text), double.parse(s2.text), double.parse(s3.text))
+        .then((value) {
+      setState(() {
+        hasil = value.prediction;
+        print(hasil);
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
+
+  void _cekDiplomaEmpat() async {
+    Api.cekDiplomaEmpat(double.parse(s1.text), double.parse(s2.text),
+            double.parse(s3.text), double.parse(s4.text))
+        .then((value) {
+      setState(() {
+        hasil = value.prediction;
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
+
+  void _cekDiplomaLima() async {
+    Api.cekDiplomaLima(double.parse(s1.text), double.parse(s2.text),
+            double.parse(s3.text), double.parse(s4.text), double.parse(s5.text))
+        .then((value) {
+      setState(() {
+        hasil = value.prediction;
+      });
+    }).catchError((err) {
+      print(err);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +65,9 @@ class _DiplomaPage extends State<DiplomaPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              SizedBox(
+                height: 36,
+              ),
               Text(
                 'Kamu sudah melalui semester berapa?',
                 textAlign: TextAlign.left,
@@ -68,6 +115,7 @@ class _DiplomaPage extends State<DiplomaPage> {
                 height: 12,
               ),
               TextFormField(
+                controller: s1,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -83,6 +131,7 @@ class _DiplomaPage extends State<DiplomaPage> {
                 ),
               ),
               TextFormField(
+                controller: s2,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -98,6 +147,7 @@ class _DiplomaPage extends State<DiplomaPage> {
                 ),
               ),
               TextFormField(
+                controller: s3,
                 cursorColor: Theme.of(context).cursorColor,
                 maxLength: 10,
                 keyboardType: TextInputType.number,
@@ -114,6 +164,7 @@ class _DiplomaPage extends State<DiplomaPage> {
               ),
               enableEmpat
                   ? TextFormField(
+                      controller: s4,
                       enabled: enableEmpat,
                       cursorColor: Theme.of(context).cursorColor,
                       maxLength: 10,
@@ -132,6 +183,7 @@ class _DiplomaPage extends State<DiplomaPage> {
                   : SizedBox(),
               enableLima
                   ? TextFormField(
+                      controller: s5,
                       enabled: enableLima,
                       cursorColor: Theme.of(context).cursorColor,
                       maxLength: 10,
@@ -152,7 +204,15 @@ class _DiplomaPage extends State<DiplomaPage> {
                 height: 36,
               ),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (selectedValue == 3) {
+                    _cekDiplomaTiga();
+                  } else if (selectedValue == 4) {
+                    _cekDiplomaEmpat();
+                  } else if (selectedValue == 5) {
+                    _cekDiplomaLima();
+                  }
+                },
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80.0)),
                 padding: EdgeInsets.all(0.0),
@@ -175,6 +235,21 @@ class _DiplomaPage extends State<DiplomaPage> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 36,
+              ),
+              Text(
+                'Selamat! Anda lulus dengan predikat $hasil',
+                style: TextStyle(
+                  fontSize: 18,
+                  letterSpacing: 0.27,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 146,
               ),
             ],
           ),

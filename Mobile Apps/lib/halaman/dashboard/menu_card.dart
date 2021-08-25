@@ -1,18 +1,18 @@
 import 'package:compest_artificialifelse/halaman/dashboard/menu_model.dart';
 import 'package:compest_artificialifelse/halaman/dashboard/kelulusan/menu_kelulusan.dart';
 import 'package:compest_artificialifelse/halaman/dashboard/paper/menu_paper.dart';
-import 'package:compest_artificialifelse/halaman/dashboard/kepribadian/kepribadian_sosmed.dart';
 import 'package:compest_artificialifelse/halaman/dashboard/kepribadian/kepribadian_tes.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class PopularCourseListView extends StatefulWidget {
-  const PopularCourseListView({Key? key}) : super(key: key);
+class DashboardListView extends StatefulWidget {
+  const DashboardListView({Key? key}) : super(key: key);
 
   @override
-  _PopularCourseListViewState createState() => _PopularCourseListViewState();
+  _DashboardListView createState() => _DashboardListView();
 }
 
-class _PopularCourseListViewState extends State<PopularCourseListView>
+class _DashboardListView extends State<DashboardListView>
     with TickerProviderStateMixin {
   AnimationController? animationController;
   @override
@@ -102,7 +102,7 @@ class CategoryView extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.transparent,
               onTap: () {
-                if (category!.title == "Prediksi Kelulusan") {
+                if (category!.title == "Cek Kelulusan") {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -117,12 +117,18 @@ class CategoryView extends StatelessWidget {
                     ),
                   );
                 } else if (category!.title == "Kepribadian Dari Sosmed") {
+                  /*
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => KepribadianSosmed(),
                     ),
-                  );
+                  );*/
+                  Fluttertoast.showToast(
+                      msg: "Fitur ini belum tersedia!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      backgroundColor: Colors.red,
+                      webShowClose: false);
                 } else if (category!.title == "Tes Kepribadian") {
                   Navigator.push(
                     context,
@@ -143,7 +149,7 @@ class CategoryView extends StatelessWidget {
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: HexColor('#F8FAFB'),
+                                color: Color(0xff27C499),
                                 borderRadius: const BorderRadius.all(
                                     Radius.circular(16.0)),
                                 // border: new Border.all(
@@ -165,7 +171,7 @@ class CategoryView extends StatelessWidget {
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
                                                 letterSpacing: 0.27,
-                                                color: Colors.black87,
+                                                color: Colors.white,
                                               ),
                                             ),
                                           ),
@@ -182,34 +188,43 @@ class CategoryView extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
-                                                Text(
-                                                  '${category!.lessonCount} lesson',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w200,
-                                                    fontSize: 12,
-                                                    letterSpacing: 0.27,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
+                                                category!.title !=
+                                                        "Kepribadian Dari Sosmed"
+                                                    ? Text(
+                                                        '${category!.status}',
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        maxLines: 3,
+                                                        style: TextStyle(
+                                                          fontSize: 12,
+                                                          letterSpacing: 0.27,
+                                                          color: Colors.white,
+                                                        ),
+                                                      )
+                                                    : SizedBox(),
+                                                category!.title ==
+                                                        "Kepribadian Dari Sosmed"
+                                                    ? Text(
+                                                        '${category!.status}',
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        maxLines: 3,
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 12,
+                                                          letterSpacing: 0.27,
+                                                          color: Colors.red,
+                                                        ),
+                                                      )
+                                                    : SizedBox(),
                                                 Container(
                                                   child: Row(
                                                     children: <Widget>[
-                                                      Text(
-                                                        '${category!.rating}',
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w200,
-                                                          fontSize: 18,
-                                                          letterSpacing: 0.27,
-                                                          color: Colors.grey,
-                                                        ),
-                                                      ),
                                                       Icon(
-                                                        Icons.star,
-                                                        color: Colors.blue[400],
+                                                        Icons
+                                                            .arrow_right_alt_rounded,
+                                                        color: Colors.white,
                                                         size: 20,
                                                       ),
                                                     ],
