@@ -2,9 +2,17 @@
       <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
           <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
             <div class="row text-center">
-              <h3>Selamat! Anda Lulus dengan Predikat</h1>
+              {% if data["prediction"] == "Tidak Lulus" %}
+                <h3>Mohon maaf!</h3>
+              {% else %}
+                <h3>Selamat! Anda Lulus dengan Predikat</h1>
+              {% endif %}
               <hr>
-              <h4>{{ data["prediction"] }}</h4>
+              {% if data["prediction"] == "Tidak Lulus" %}
+                <h4>Anda {{ data["prediction"] }}</h4>
+              {% else %}
+                <h4>{{ data["prediction"] }}</h4>
+              {% endif %}
             </div>
       </section>
 {% include 'layouts/footer.html' %}

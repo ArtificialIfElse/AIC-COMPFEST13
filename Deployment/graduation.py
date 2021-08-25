@@ -128,6 +128,7 @@ def graduation_bachelor_predict():
         value = [data_form]
         prediction = model_graduation_bachelor_seventh.predict(value)
     predictionMap = {}
+    predictionMap[3] = "Tidak Lulus"
     predictionMap[2] = "Sangat Memuaskan"
     predictionMap[1] = "Memuaskan"
     predictionMap[0] = "Cumlaude"
@@ -174,11 +175,11 @@ def graduation_diploma_predict():
         prediction = model_graduation_diploma_fifth.predict(value)
     print(value)
     predictionMap = {}
+    predictionMap[3] = "Tidak Lulus"
     predictionMap[2] = "Sangat Memuaskan"
     predictionMap[1] = "Memuaskan"
     predictionMap[0] = "Cumlaude"
     predictionMap[-1] = "Tidak Lulus"
-    predictionMap[3] = "Tidak Lulus"
     predictionMap[-2] = "Error"
 
     data = {
@@ -229,6 +230,7 @@ def graduation_diploma_predict_api():
         prediction = model_graduation_diploma_fifth.predict(value)
     
     predictionMap = {}
+    predictionMap[3] = "Tidak Lulus"
     predictionMap[2] = "Sangat Memuaskan"
     predictionMap[1] = "Memuaskan"
     predictionMap[0] = "Cumlaude"
@@ -284,6 +286,7 @@ def graduation_bachelor_predict_api():
         prediction = model_graduation_bachelor_seventh.predict(value)
     
     predictionMap = {}
+    predictionMap[3] = "Tidak Lulus"
     predictionMap[2] = "Sangat Memuaskan"
     predictionMap[1] = "Memuaskan"
     predictionMap[0] = "Cumlaude"
@@ -346,6 +349,7 @@ def graduation_diploma_predict_api_v2():
         prediction = model_graduation_diploma_fifth.predict(value)
     
     predictionMap = {}
+    predictionMap[3] = "Tidak Lulus"
     predictionMap[2] = "Sangat Memuaskan"
     predictionMap[1] = "Memuaskan"
     predictionMap[0] = "Cumlaude"
@@ -409,6 +413,7 @@ def graduation_bachelor_predict_api_v2():
         prediction = model_graduation_bachelor_seventh.predict(value)
     
     predictionMap = {}
+    predictionMap[3] = "Tidak Lulus"
     predictionMap[2] = "Sangat Memuaskan"
     predictionMap[1] = "Memuaskan"
     predictionMap[0] = "Cumlaude"
