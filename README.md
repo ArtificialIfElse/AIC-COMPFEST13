@@ -3,7 +3,7 @@
 ### COMPFEST 13 - AI Innovation Challenge ArtificialIfElse
 
 1. Handhika Yanuar Pratama (AI/ML Developer)
-2. Muhammad Novrizal Ghiffari (Flutter Developer)
+2. Muhammad Novrizal Ghiffari (Mobile Developer)
 3. Yosep Novento Nugroho (Backend Developer)
 
 Produk yang kami buat berupa web apps dan mobile apps. Dimana untuk aplikasi mobile kami berikan nama `Siswa AI`. Tujuan utama dari produk kami yaitu dapat membantu menunjang pendidikan Indonesia dengan melakukan pemetaan jurusan seseorang melalui tes kepribadian. Selain itu juga terdapat fitur tambahan berupa prediksi predikat kelulusan untuk jenjang pendidikan diploma/sarjana dan pendeteksian tema paper bedasarkan abstraksi.
