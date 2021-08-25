@@ -1,25 +1,25 @@
 class KepribadianRespon {
   List<String> advice;
-  double agreeableness;
-  double conscientiousness;
-  double extroversion;
+  int agreeableness;
+  int conscientiousness;
+  int extroversion;
   String mbti;
   String message;
-  double neuroticism;
-  double openness;
+  int neuroticism;
+  int openness;
   String recommendationMajor;
   int responseCode;
   bool status;
 
   KepribadianRespon.fromJsonMap(Map<String, dynamic> json)
       : advice = json['advice'].cast<String>(),
-        agreeableness = json['agreeableness'],
-        conscientiousness = json['conscientiousness'],
-        extroversion = json['extroversion'],
+        agreeableness = (json['agreeableness'] * 10).toInt(),
+        conscientiousness = (json['conscientiousness'] * 10).toInt(),
+        extroversion = (json['extroversion'] * 10).toInt(),
         mbti = json['mbti'],
         message = json['message'],
-        neuroticism = json['neuroticism'],
-        openness = json['openness'],
+        neuroticism = (json['neuroticism'] * 10).toInt(),
+        openness = (json['openness'] * 10).toInt(),
         recommendationMajor = json['recommendation_major'],
         responseCode = json['response_code'],
         status = json['status'];
@@ -29,7 +29,7 @@ class KepribadianRespon {
     data['advice'] = this.advice;
     data['agreeableness'] = this.agreeableness;
     data['conscientiousness'] = this.conscientiousness;
-    data['extroversion'] = this.extroversion;
+    data['extroversion'] = this.extroversion.toString();
     data['mbti'] = this.mbti;
     data['message'] = this.message;
     data['neuroticism'] = this.neuroticism;

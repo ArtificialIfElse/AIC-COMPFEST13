@@ -16,7 +16,7 @@ flask_app.register_blueprint(paper)
 @flask_app.route("/")
 def index():
     data = {
-        "title": "Homepage",
+        "title": "Siswa AI - Homepage",
         "selected": "index"
     }
     return render_template("home.html", data=data)

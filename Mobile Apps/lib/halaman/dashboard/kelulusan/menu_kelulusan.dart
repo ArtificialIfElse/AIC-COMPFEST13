@@ -57,7 +57,7 @@ class _MenuKelulusan extends State<MenuKelulusan> {
                   bottomLeft: Radius.circular(100),
                   bottomRight: Radius.circular(100)),
               child: BottomNavigationBar(
-                selectedItemColor: Color(0xff27C499),
+                selectedItemColor: Colors.blue[400],
                 unselectedItemColor: Colors.grey[500],
                 items: [
                   // ignore: deprecated_member_use

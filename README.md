@@ -1,6 +1,6 @@
 ## Repositori ini dibuat selama perlombaan AIC pada rangkaian acara COMPFEST 13
 ---
-### Tim kami terdiri dari
+### COMPFEST 13 - AI Innovation Challenge ArtificialIfElse
 
 1. Handhika Yanuar Pratama (AI/ML Developer)
 2. Muhammad Novrizal Ghiffari (Mobile Developer)
@@ -21,11 +21,11 @@ https://user-images.githubusercontent.com/71202864/130606098-b1e525a3-61a3-49c0-
 ---
 ### Mobile apps dapat diunduh melalui tautan berikut
 
-[MOBILE APPS](https://github.com/ArtificialIfElse/AIC-COMPFEST13/raw/main/Product/Siswa%20AI%20v1.0.apk)
+[MOBILE APPS](https://github.com/ArtificialIfElse/AIC-COMPFEST13/raw/main/Product/Siswa%20AI%20v1.1.apk)
 
 #### Preview
 
-https://user-images.githubusercontent.com/71202864/130606081-1948d19e-8a03-47a3-964b-eb3bc4b7c7f2.mp4
+https://user-images.githubusercontent.com/66689249/130738579-f5d393a5-2be8-4b3f-8a4a-0a6b4157d1ed.mp4
 
 ---
 ### Link Youtube
@@ -33,4 +33,7 @@ https://user-images.githubusercontent.com/71202864/130606081-1948d19e-8a03-47a3-
 [YOUTUBE](https://youtu.be/gxRLh3CFsnQ)
 
 ---
+### Link Feedback
+[FEEDBACK](https://forms.gle/FhRyx6gkFTVx3pTy7)
+
 Copyright © 2021 ArtificialIfElse
