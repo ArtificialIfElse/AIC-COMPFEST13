@@ -29,13 +29,13 @@ class Data {
   Data.fromJsonMap(Map<String, dynamic> json)
       : namaSoal = json['nama_soal'],
         soal = json['soal'],
-        value_slider = json['value_slider'];
+        value_slider = json['value_slider'].toDouble();
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['nama_soal'] = this.namaSoal;
     data['soal'] = this.soal;
-    data['value_slider'] = this.value_slider;
+    data['value_slider'] = this.value_slider.toString();
     return data;
   }
 }

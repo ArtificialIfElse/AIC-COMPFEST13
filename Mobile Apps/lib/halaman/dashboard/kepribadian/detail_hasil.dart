@@ -34,11 +34,13 @@ class _DetailHasil extends State<DetailHasil> {
               padding: EdgeInsets.all(30),
               child: Column(
                 children: <Widget>[
+                  SizedBox(
+                    height: 24,
+                  ),
                   Text(
                     'Hasil prediksi kepribadianmu ${widget.tipe}',
                     style: TextStyle(
                       fontSize: 16,
-                      letterSpacing: 0.27,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
@@ -49,13 +51,10 @@ class _DetailHasil extends State<DetailHasil> {
                   Text(
                     'Jurusan yang cocok untukmu adalah ${widget.jurusan}',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       letterSpacing: 0.27,
                       color: Colors.black,
                     ),
-                  ),
-                  SizedBox(
-                    height: 12,
                   ),
                 ],
               ),
@@ -74,6 +73,7 @@ class _DetailHasil extends State<DetailHasil> {
                 children: <Widget>[
                   Text(
                     "NEU : Neuroticism, OPN : Openness, AGR : Agreeableness, CSN : Conscientiousness, EXT : Extroversion\n\n",
+                    style: TextStyle(fontSize: 12),
                   ),
                   Text(
                     "Penjelasan Grafik : ",
@@ -83,22 +83,32 @@ class _DetailHasil extends State<DetailHasil> {
               ),
             ),
             Expanded(
-              child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(left: 20, right: 20),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  color: Color(0xff27C499),
                   child: Padding(
-                padding: EdgeInsets.all(30),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      '1. ${widget.advice[0]}\n2.${widget.advice[1]}\n3. ${widget.advice[2]}\n4. ${widget.advice[3]}\n5. ${widget.advice[4]}',
-                      style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 0.27,
-                        color: Colors.black,
+                    padding: EdgeInsets.all(15),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            '1. ${widget.advice[0]}\n2.${widget.advice[1]}\n3. ${widget.advice[2]}\n4. ${widget.advice[3]}\n5. ${widget.advice[4]}',
+                            style: TextStyle(
+                              fontSize: 14,
+                              letterSpacing: 0.27,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              )),
+              ),
             ),
             SizedBox(
               height: 16,

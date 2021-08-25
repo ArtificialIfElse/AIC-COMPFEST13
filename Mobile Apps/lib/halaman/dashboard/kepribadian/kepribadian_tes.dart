@@ -16,11 +16,11 @@ class _KepribadianTes extends State<KepribadianTes> {
   List<String> advice = [];
   String mbti = "";
   String message = "";
-  double neuroticism = 0.0;
-  double openness = 0.0;
-  double agreeableness = 0.0;
-  double conscientiousness = 0.0;
-  double extroversion = 0.0;
+  int neuroticism = 0;
+  int openness = 0;
+  int agreeableness = 0;
+  int conscientiousness = 0;
+  int extroversion = 0;
   String recommendationMajor = "";
 
   var features = [
@@ -44,6 +44,7 @@ class _KepribadianTes extends State<KepribadianTes> {
   void _cekKepribadian(List<double> jawaban) async {
     Api.cekKepribadian(jawaban).then((value) {
       setState(() {
+        print(value);
         mbti = value.mbti;
         recommendationMajor = value.recommendationMajor;
         advice = value.advice;
@@ -61,11 +62,11 @@ class _KepribadianTes extends State<KepribadianTes> {
               advice: advice,
               data: [
                 [
-                  (neuroticism * 10) as int,
-                  (openness * 10) as int,
-                  (agreeableness * 10) as int,
-                  (conscientiousness * 10) as int,
-                  (extroversion * 10) as int
+                  (neuroticism),
+                  (openness),
+                  (agreeableness),
+                  (conscientiousness),
+                  (extroversion),
                 ],
               ],
             ),
@@ -188,6 +189,17 @@ class _KepribadianTes extends State<KepribadianTes> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     letterSpacing: 0.27,
+                    color: Colors.black87,
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  'Semakin kiri kurang setuju dan semakin kanan sangat setuju!',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 14,
                     color: Colors.black87,
                   ),
                 ),

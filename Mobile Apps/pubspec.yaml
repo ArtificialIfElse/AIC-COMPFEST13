@@ -35,6 +35,7 @@ dependencies:
   matrix4_transform: ^1.1.5
   collapsible_sidebar: ^2.0.1
   slimy_card: ^1.0.4
+  url_launcher: ^5.7.10
 
 dev_dependencies:
   flutter_test:
