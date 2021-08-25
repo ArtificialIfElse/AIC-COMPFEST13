@@ -1,16 +1,14 @@
-# compest_artificialifelse
+# Mobile Apps V1.1
+---
+## Siswa AI
 
-A new Flutter project.
+Aplikasi mobile ini dibuat karena kami memahami bahwa penggunaan aplikasi mobile meningkat secara signifikan dibandingkan pengguna aplikasi web. Fitur yang ditawarkan pada aplikasi ini sama dengan fitur yang ditawarkan pada aplikasi web yaitu
 
-## Getting Started
+1. Tes Kepribadian
+2. Prediksi Predikat Kelulusan
+3. Prediksi Tema Paper
 
-This project is a starting point for a Flutter application.
+Versi 1.1 ini merupakan peningkatan dan perbaikan bug dari versi 1.0 yang telah direlease pada hari sebelumnya 24 Agustus 2021
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+Copyright © 2021 ArtificialIfElse
