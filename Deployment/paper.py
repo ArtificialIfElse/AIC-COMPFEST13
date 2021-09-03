@@ -7,7 +7,7 @@ from googletrans import Translator
 import numpy as np
 
 # learn
-from transformers import pipeline
+# from transformers import pipeline
 
 paper = Blueprint('paper',__name__)
 

@@ -5,9 +5,12 @@
             {% if data["is_found"] == False %}
                   <h1>{{ data["prediction"] }}</h1>
             {% else %}
-              <h3>Hasil Tes Akun Media Twitter</h1>
+            <h3>Hasil Tes Akun Media Twitter</h1>
               <hr>
               <h2>{{ data["prediction"] }}</h2>
+              <div style="width: 300px; margin: 0 auto;">
+                <img src="{{ data['image_url'] }}" alt="" height="300px">
+              </div>
               <p>{{ data["advice"] }}</p>
               <br>
               <h4>Saran Pertemanan</h4>
@@ -15,6 +18,6 @@
             {% endif %}
                     
             </div>
-        <a class="btn btn-primary w-50" href="{{ url_for('twitter.twitter_index') }}">Cek Lagi</a>
+        <a class="btn w-50" style="background-color: #27C499; color: white;" href="{{ url_for('twitter.twitter_index') }}">Cek Lagi</a>
       </section>
 {% include 'layouts/footer.html' %}
