@@ -4,6 +4,10 @@ from personality_logic import *
 from flask import Blueprint, render_template, jsonify, request
 from paper_topic_predictions import *
 from googletrans import Translator
+import numpy as np
+
+# learn
+from transformers import pipeline
 
 paper = Blueprint('paper',__name__)
 
@@ -34,12 +38,20 @@ def predict_paper():
         translator = Translator()
         result_translate = translator.translate(abstract, dest='en')
         abstract = result_translate.text
-    result = get_category([abstract])
+    classifier = pipeline("zero-shot-classification")
+    result = classifier(abstract, 
+           candidate_labels=['AI/ML', 'Cyber Security', 'DevOps', 'Cryptography', 'Mathematics', 'Statistics', 'Physics', 'Social'])
+
+    label = result["labels"][0]
+    best_score = np.round(result["scores"][0] * 100)
 
     data = {
         "title": "Prediksi Tema Paper",
         "selected": "paper",
-        "prediction": result
+        "scores": result["scores"],
+        "labels": result["labels"],
+        "best_score": best_score,
+        "best_label": label
     }
 
     return render_template("paper/predict.html", data=data)
@@ -61,14 +73,27 @@ def api_predict_paper():
             translator = Translator()
             result_translate = translator.translate(abstract, dest='en')
             abstract = result_translate.text
+        classifier = pipeline("zero-shot-classification")
+        result = classifier(abstract, 
+           candidate_labels=['AI/ML', 'Cyber Security', 'DevOps', 'Cryptography', 'Mathematics', 'Statistics', 'Physics', 'Social'])
 
-        result = get_category([abstract])
+        best_label = result["labels"][0]
+        best_score = np.round(result["scores"][0] * 100)
+
+        data_result = []
+        for iterate in range(len(result["labels"])):
+            data_result.append({
+                'label': result["labels"][iterate],
+                'score': result["scores"][iterate]
+            })
 
         data = {
                 "status": True,
                 "response_code": 200,
                 "message": "Success Predict Paper Theme",
-                "theme": result
+                "best_score": best_score,
+                "best_label": best_label,
+                "data": data_result
             }
 
         return jsonify(data)
@@ -79,3 +104,4 @@ def api_predict_paper():
                 "message": "Bad Request"
             }
         return jsonify(data)
+

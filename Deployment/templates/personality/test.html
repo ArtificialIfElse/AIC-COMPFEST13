@@ -1,0 +1,34 @@
+{% include 'layouts/header.html' %}
+      <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+          <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+            <div class="row">
+              <h1>{{ prediction }}</h1>
+            </div>
+                <h1>Paper Bahasa Inggris</h1>
+                <form action="#" method="post">
+                    <div class="row my-3">
+                        <div class="form-group col-md-12">
+                            <label for="inputEmail4">Judul Paper</label>
+                            <input name="title_paper" type="text" class="form-control" placeholder="Masukkan Judul Paper" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Abstract Paper</label>
+                            <textarea name="abstract_paper" class="form-control" rows="3"></textarea>
+                          </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="form-group col-md-12">
+                            <label>Pilih Bahasa</label>
+                            <select class="form-control" name="bahasa">
+                                <option value="indonesia">Bahasa Indonesia</option>
+                                <option value="inggris">Bahasa Inggris</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Prediksi Tema Paper</button>
+                </form>
+          </div>
+      </section>
+{% include 'layouts/footer.html' %}

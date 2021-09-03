@@ -1,9 +1,15 @@
 {% include 'layouts/header.html' %}
 <div style="margin-bottom: 6vh;">
-    <div style="width: 500px; height: 500px; display: block; margin: 0 auto">
+    <!-- <div style="width: 500px; height: 500px; display: block; margin: 0 auto"> -->
+    <div>
       <canvas id="pieData"></canvas>
-      <hr>
-      <h4 class="mt-2 text-center">Hasil Prediksi Topik Papermu adalah {{ data["best_label"] }} dengan akurasi {{ data["best_score"] }} %</h4>
+    </div>
+
+    <div>
+        <h2>{{data['labels']}}</h2>
+        <h2>{{data['labels'][0]}}</h2>
+        <h2>{{data['scores']}}</h2>
+        <h2>{{data['scores'][0]}}</h2>
     </div>
 
     <input
@@ -67,8 +73,9 @@
   const physics = document.getElementById("physics").value;
   const ai_ml = document.getElementById("ai_ml").value;
   const mathematics = document.getElementById("mathematics").value;
+//   console.log(cryptography)
   
-  var pieData = document.getElementById("pieData");
+  var coba = document.getElementById("pieData");
 
     const data = {
         labels: [
@@ -85,22 +92,27 @@
             label: 'Paper Topic Prediciton',
             data: [cryptography, cyber_security, social, statistics, devops, physics, ai_ml, mathematics],
             backgroundColor: [
-                '#55D6BE',
-                '#DA3E52',
-                '#DCED31',
-                '#4A8FE7',
-                '#EDEDF4',
-                '#FF01FB',
-                '#2B061E',
-                '#FCAB64',
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
             ],
             hoverOffset: 4
         }]
     };
 
-    var pieChart = new Chart(pieData, {
+    var pieChart = new Chart(coba, {
         type: 'pie',
         data: data
     });
+
+    // var pieChart = new Chart(coba, {
+    //     type: 'pie',
+    //     data: data
+    // });
 </script>
 {% include 'layouts/footer.html' %}

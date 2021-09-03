@@ -1,0 +1,41 @@
+{% include 'layouts/header.html' %}
+      <section class="h-100 w-100 bg-white" style="box-sizing: border-box">
+          <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
+            <div class="row">
+              <h1>{{ prediction }}</h1>
+            </div>
+                <h3>Masukkan Paper</h3>
+                <form action="{{ url_for('summarization.summarization_predict') }}" method="post">
+                    <div class="row my-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Abstract Paper</label>
+                            <textarea onkeyup="check()" id="content_txt" name="abstract" class="form-control" rows="3"></textarea>
+                            <p id="message" style="color:red;"></p>
+                        </div>
+                    </div>
+                    <button id="btnSubmit" type="submit" class="btn" style="background-color:#27c499; color:white;">Prediksi Tema Paper</button>
+                </form>
+          </div>
+      </section>
+      <script>
+            function check() {
+                var area = document.getElementById("content_txt");
+                var message = document.getElementById("message");
+                var btnSubmit = document.getElementById("btnSubmit");
+                var minLength = 50;
+                var checkLength = function() {
+                    if (area.value.length == 0) {
+                        message.innerHTML = "";
+                        btnSubmit.disabled = true;
+                    } else if (area.value.length < minLength) {
+                        message.innerHTML = "Tampaknya abstraksi yang kamu inputkan salah";
+                        btnSubmit.disabled = true;
+                    } else {
+                        message.innerHTML = ""
+                        btnSubmit.disabled = false;
+                    }
+                }
+                setInterval(checkLength, 300);
+            }
+      </script>
+{% include 'layouts/footer.html' %}

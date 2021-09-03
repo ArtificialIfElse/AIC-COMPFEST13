@@ -6,8 +6,8 @@ runtime_config:
 manual_scaling:
   instances: 2
 resources:
-  cpu: 1
+  cpu: 2
   memory_gb: 4
-  disk_size_gb: 20  # Disk size must be between 10GB and 10240GB
+  disk_size_gb: 50  # Disk size must be between 10GB and 10240GB
 
-entrypoint: gunicorn -b :$PORT app:flask_app
+entrypoint: gunicorn -b :$PORT app:flask_app --timeout 300
