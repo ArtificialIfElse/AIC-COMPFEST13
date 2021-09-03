@@ -2,9 +2,19 @@
       <section class="h-100 w-100 bg-white text-center" style="box-sizing: border-box">
           <div class="content-2-2 container-xxl mx-auto p-0  position-relative" style="font-family: 'Poppins', sans-serif">
             <div class="row text-center">
-                <h1>{{ data["prediction"] }}</h1>
+            {% if data["is_found"] == False %}
+                  <h1>{{ data["prediction"] }}</h1>
+            {% else %}
+              <h3>Hasil Tes Akun Media Twitter</h1>
+              <hr>
+              <h2>{{ data["prediction"] }}</h2>
+              <p>{{ data["advice"] }}</p>
+              <br>
+              <h4>Saran Pertemanan</h4>
+              <p>{{ data["friendship"] }}</p>
+            {% endif %}
+                    
             </div>
-            
         <a class="btn btn-primary w-50" href="{{ url_for('twitter.twitter_index') }}">Cek Lagi</a>
       </section>
 {% include 'layouts/footer.html' %}

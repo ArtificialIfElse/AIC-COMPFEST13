@@ -104,4 +104,3 @@ def api_predict_paper():
                 "message": "Bad Request"
             }
         return jsonify(data)
-

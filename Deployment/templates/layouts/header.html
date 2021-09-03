@@ -392,6 +392,16 @@
                 </a>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown button
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
               <div class="modal-body" style="padding: 2rem; padding-top: 0; padding-bottom: 0">
                 <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
@@ -420,7 +430,7 @@
             <li class="nav-item {% if (data['selected'] == 'index') %} active {% endif %}">
               <a class="nav-link" href="{{ url_for('index') }}">Home</a>
             </li>
-            <li class="nav-item {% if (data['selected'] == 'graduation') %} active {% endif %}">
+            <!-- <li class="nav-item {% if (data['selected'] == 'graduation') %} active {% endif %}">
               <a class="nav-link" href="{{ url_for('graduation.graduation_index') }}">Prediksi Kelulusan</a>
             </li>
             <li class="nav-item {% if (data['selected'] == 'personality') %} active {% endif %}">
@@ -431,7 +441,36 @@
             </li>
             <li class="nav-item {% if (data['selected'] == 'api_docs') %} active {% endif %}">
               <a class="nav-link" href="{{ url_for('api_docs') }}">API Docs</a>
-            </li>
+            </li> -->
+            <div class="dropdown mx-2" style="background-color: white;">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Prediksi Kelulusan
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{ url_for('graduation.graduation_diploma_index') }}">Diploma</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('graduation.graduation_bachelor_index') }}">Sarjana</a></li>
+              </ul>
+            </div>
+  
+            <div class="dropdown mx-2">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Tes Kepribadian
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{ url_for('personality.index_personality') }}">Cek Jurusan</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('twitter.twitter_index') }}">Cek Sosial Media</a></li>
+              </ul>
+            </div>
+  
+            <div class="dropdown mx-2">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Paper
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="{{ url_for('paper.paper_index') }}">Tema Paper</a></li>
+                <li><a class="dropdown-item" href="#">Resume</a></li>
+              </ul>
+            </div>
           </ul>
         </div>
       </nav>
