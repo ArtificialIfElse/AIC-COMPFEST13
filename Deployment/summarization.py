@@ -39,7 +39,7 @@ def summarization_predict():
 
     return render_template("summarization/predict.html", data=data)
 
-@paper.route("/api/v1/summarization/predict", methods=["POST"])
+@summarization.route("/api/v1/summarization/predict", methods=["POST"])
 def api_predict_summarization():
     try:
         if request.get_json() is None or request.get_json()['abstract'] is None or request.get_json()['language'] is None:
@@ -50,15 +50,14 @@ def api_predict_summarization():
             }
 
             return jsonify(data)
-
+        summary = request.get_json()['abstract']
         summarizer = pipeline("summarization")
         result_summary = summarizer(summary)
         data = {
                 "status": True,
                 "response_code": 200,
                 "message": "Success Summarization Paragraph",
-                "summary_text": result_summary[0]["summary_text"],
-                "data": data_result
+                "summary_text": result_summary[0]["summary_text"]
             }
 
         return jsonify(data)
