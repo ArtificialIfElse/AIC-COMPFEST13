@@ -4,6 +4,11 @@
             <div class="row">
               <h1>{{ prediction }}</h1>
             </div>
+              <div class="mx-auto text-center">
+                <h4>Prediksi Personalitymu</h4>
+                <h4>Lewat Akun Twittermu</h4>
+              </div>
+              <hr>
               <form action="{{ url_for('twitter.twitter_predict') }}" method="post">
                   
                 <div class="form-group text-center">

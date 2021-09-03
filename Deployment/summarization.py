@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request
 from transformers import pipeline
-from googletrans import Translator
 
 summarization = Blueprint('summarization',__name__)
 
@@ -42,7 +41,7 @@ def summarization_predict():
 @summarization.route("/api/v1/summarization/predict", methods=["POST"])
 def api_predict_summarization():
     try:
-        if request.get_json() is None or request.get_json()['abstract'] is None or request.get_json()['language'] is None:
+        if request.get_json() is None or request.get_json()['abstract'] is None:
             data = {
                 "status": False,
                 "response_code": 400,

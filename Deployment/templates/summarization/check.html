@@ -4,16 +4,16 @@
             <div class="row">
               <h1>{{ prediction }}</h1>
             </div>
-                <h3>Masukkan Paper</h3>
+                <h3>Masukkan Isi Papermu</h3>
                 <form action="{{ url_for('summarization.summarization_predict') }}" method="post">
                     <div class="row my-3">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Abstract Paper</label>
-                            <textarea onkeyup="check()" id="content_txt" name="abstract" class="form-control" rows="3"></textarea>
+                            <textarea onkeyup="check()" id="content_txt" name="abstract" class="form-control" rows="10"></textarea>
                             <p id="message" style="color:red;"></p>
                         </div>
                     </div>
-                    <button id="btnSubmit" type="submit" class="btn" style="background-color:#27c499; color:white;">Prediksi Tema Paper</button>
+                    <button id="btnSubmit" type="submit" class="btn" style="background-color:#27c499; color:white;">Prediksi Summary Paper</button>
                 </form>
           </div>
       </section>
