@@ -38,7 +38,7 @@ def predict_paper():
         translator = Translator()
         result_translate = translator.translate(abstract, dest='en')
         abstract = result_translate.text
-    classifier = pipeline("zero-shot-classification")
+    classifier = pipeline("zero-shot-classification", model="valhalla/distilbart-mnli-12-3")
     result = classifier(abstract, 
            candidate_labels=['AI/ML', 'Cyber Security', 'DevOps', 'Cryptography', 'Mathematics', 'Statistics', 'Physics', 'Social'])
 
@@ -69,11 +69,12 @@ def api_predict_paper():
             return jsonify(data)
 
         abstract = request.get_json()['abstract']
+        print(abstract)
         if (request.get_json()['language'] == 2):
             translator = Translator()
             result_translate = translator.translate(abstract, dest='en')
             abstract = result_translate.text
-        classifier = pipeline("zero-shot-classification")
+        classifier = pipeline("zero-shot-classification", model="valhalla/distilbart-mnli-12-3")
         result = classifier(abstract, 
            candidate_labels=['AI/ML', 'Cyber Security', 'DevOps', 'Cryptography', 'Mathematics', 'Statistics', 'Physics', 'Social'])
 
