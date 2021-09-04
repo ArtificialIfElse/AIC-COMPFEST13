@@ -21,7 +21,7 @@ https://user-images.githubusercontent.com/71202864/130606098-b1e525a3-61a3-49c0-
 ---
 ### Mobile apps dapat diunduh melalui tautan berikut
 
-[MOBILE APPS](https://github.com/ArtificialIfElse/AIC-COMPFEST13/raw/main/Product/Siswa%20AI%20v1.1.apk)
+[MOBILE APPS](https://github.com/ArtificialIfElse/AIC-COMPFEST13/raw/main/Product/Siswa%20AI%20v1.2.apk)
 
 #### Preview
 
